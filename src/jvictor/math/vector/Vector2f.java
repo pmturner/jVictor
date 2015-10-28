@@ -16,12 +16,17 @@ public class Vector2f implements Vectorf<Vector2f> {
 
     @Override
     public Vector2f add(Vector2f v) {
-        return null;
+        this.x += v.x;
+        this.y += v.y;
+        return this;
     }
 
     @Override
     public Vector2f addVectors(Vector2f v1, Vector2f v2) {
-        return null;
+        Vector2f result = new Vector2f();
+        result.x = v1.x + v2.x;
+        result.y = v1.y + v2.y;
+        return result;
     }
 
     @Override
