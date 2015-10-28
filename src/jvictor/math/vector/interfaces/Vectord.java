@@ -12,16 +12,18 @@ public interface Vectord<VecType> {
 
     double length();
     double lengthSquared();
-    VecType setLength(double l);
 
     VecType negate();
-    VecType negate(VecType destination);
+    VecType negateCopy();
 
     VecType normalize();
-    VecType normalize(VecType destination);
+    VecType normalizeCopy();
 
     VecType scale(double s);
-    VecType scale(double s, VecType destination);
+    VecType scaleCopy(double s);
+
+    VecType scaleTo(double l);
+    VecType scaleCopyTo(double l);
 
     VecType sub(VecType v);
     VecType subVectors(VecType v1, VecType v2);

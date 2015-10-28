@@ -4,12 +4,18 @@ import jvictor.math.vector.interfaces.Vectord;
 
 public class Vector4d implements Vectord<Vector4d> {
 
-    public double x = 0;
-    public double y = 0;
-    public double z = 0;
-    public double w = 0;
+    public double x;
+    public double y;
+    public double z;
+    public double w;
 
-    public Vector4d () {}
+    public Vector4d () {
+        this(0, 0, 0, 0);
+    }
+
+    public Vector4d (Vector4d v) {
+        this(v.x, v.y, v.z, v.w);
+    }
 
     public Vector4d (double x, double y, double z, double w) {
         this.x = x;
@@ -59,17 +65,12 @@ public class Vector4d implements Vectord<Vector4d> {
     }
 
     @Override
-    public Vector4d setLength(double l) {
-        return null;
-    }
-
-    @Override
     public Vector4d negate() {
         return null;
     }
 
     @Override
-    public Vector4d negate(Vector4d destination) {
+    public Vector4d negateCopy() {
         return null;
     }
 
@@ -79,7 +80,7 @@ public class Vector4d implements Vectord<Vector4d> {
     }
 
     @Override
-    public Vector4d normalize(Vector4d destination) {
+    public Vector4d normalizeCopy() {
         return null;
     }
 
@@ -89,7 +90,17 @@ public class Vector4d implements Vectord<Vector4d> {
     }
 
     @Override
-    public Vector4d scale(double s, Vector4d destination) {
+    public Vector4d scaleCopy(double s) {
+        return null;
+    }
+
+    @Override
+    public Vector4d scaleTo(double l) {
+        return null;
+    }
+
+    @Override
+    public Vector4d scaleCopyTo(double l) {
         return null;
     }
 

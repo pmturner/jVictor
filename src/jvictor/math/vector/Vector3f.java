@@ -2,11 +2,17 @@ package jvictor.math.vector;
 
 public class Vector3f implements jvictor.math.vector.interfaces.Vector3f<Vector3f> {
 
-    public float x = 0;
-    public float y = 0;
-    public float z = 0;
+    public float x;
+    public float y;
+    public float z;
 
-    public Vector3f () {}
+    public Vector3f () {
+        this(0, 0, 0);
+    }
+
+    public Vector3f (Vector3f v) {
+        this(v.x, v.y, v.z);
+    }
 
     public Vector3f (float x, float y, float z) {
         this.x = x;
@@ -65,17 +71,12 @@ public class Vector3f implements jvictor.math.vector.interfaces.Vector3f<Vector3
     }
 
     @Override
-    public Vector3f setLength(float l) {
-        return null;
-    }
-
-    @Override
     public Vector3f negate() {
         return null;
     }
 
     @Override
-    public Vector3f negate(Vector3f destination) {
+    public Vector3f negateCopy() {
         return null;
     }
 
@@ -85,7 +86,7 @@ public class Vector3f implements jvictor.math.vector.interfaces.Vector3f<Vector3
     }
 
     @Override
-    public Vector3f normalize(Vector3f destination) {
+    public Vector3f normalizeCopy() {
         return null;
     }
 
@@ -95,7 +96,17 @@ public class Vector3f implements jvictor.math.vector.interfaces.Vector3f<Vector3
     }
 
     @Override
-    public Vector3f scale(float s, Vector3f destination) {
+    public Vector3f scaleCopy(float s) {
+        return null;
+    }
+
+    @Override
+    public Vector3f scaleTo(float l) {
+        return null;
+    }
+
+    @Override
+    public Vector3f scaleCopyTo(float l) {
         return null;
     }
 

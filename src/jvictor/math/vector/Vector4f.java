@@ -4,12 +4,18 @@ import jvictor.math.vector.interfaces.Vectorf;
 
 public class Vector4f implements Vectorf<Vector4f> {
 
-    public float x = 0;
-    public float y = 0;
-    public float z = 0;
-    public float w = 0;
+    public float x;
+    public float y;
+    public float z;
+    public float w;
 
-    public Vector4f () {}
+    public Vector4f () {
+        this(0, 0, 0, 0);
+    }
+
+    public Vector4f (Vector4f v) {
+        this(v.x, v.y, v.z, v.w);
+    }
 
     public Vector4f (float x, float y, float z, float w) {
         this.x = x;
@@ -59,17 +65,12 @@ public class Vector4f implements Vectorf<Vector4f> {
     }
 
     @Override
-    public Vector4f setLength(float l) {
-        return null;
-    }
-
-    @Override
     public Vector4f negate() {
         return null;
     }
 
     @Override
-    public Vector4f negate(Vector4f destination) {
+    public Vector4f negateCopy() {
         return null;
     }
 
@@ -79,7 +80,7 @@ public class Vector4f implements Vectorf<Vector4f> {
     }
 
     @Override
-    public Vector4f normalize(Vector4f destination) {
+    public Vector4f normalizeCopy() {
         return null;
     }
 
@@ -89,7 +90,17 @@ public class Vector4f implements Vectorf<Vector4f> {
     }
 
     @Override
-    public Vector4f scale(float s, Vector4f destination) {
+    public Vector4f scaleCopy(float s) {
+        return null;
+    }
+
+    @Override
+    public Vector4f scaleTo(float l) {
+        return null;
+    }
+
+    @Override
+    public Vector4f scaleCopyTo(float l) {
         return null;
     }
 

@@ -4,12 +4,18 @@ import jvictor.math.vector.interfaces.Vectord;
 
 public class Vector2d implements Vectord<Vector2d> {
 
-    public double x = 0;
-    public double y = 0;
+    public double x;
+    public double y;
 
-    public Vector2d () {}
+    public Vector2d () {
+        this(0, 0);
+    }
 
-    public Vector2d (float x, float y) {
+    public Vector2d (Vector2d v) {
+        this(v.x, v.y);
+    }
+
+    public Vector2d (double x, double y) {
         this.x = x;
         this.y = y;
     }
@@ -55,17 +61,12 @@ public class Vector2d implements Vectord<Vector2d> {
     }
 
     @Override
-    public Vector2d setLength(double l) {
-        return null;
-    }
-
-    @Override
     public Vector2d negate() {
         return null;
     }
 
     @Override
-    public Vector2d negate(Vector2d destination) {
+    public Vector2d negateCopy() {
         return null;
     }
 
@@ -75,7 +76,7 @@ public class Vector2d implements Vectord<Vector2d> {
     }
 
     @Override
-    public Vector2d normalize(Vector2d destination) {
+    public Vector2d normalizeCopy() {
         return null;
     }
 
@@ -85,7 +86,17 @@ public class Vector2d implements Vectord<Vector2d> {
     }
 
     @Override
-    public Vector2d scale(double s, Vector2d destination) {
+    public Vector2d scaleCopy(double s) {
+        return null;
+    }
+
+    @Override
+    public Vector2d scaleTo(double l) {
+        return null;
+    }
+
+    @Override
+    public Vector2d scaleCopyTo(double l) {
         return null;
     }
 

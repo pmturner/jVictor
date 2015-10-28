@@ -2,11 +2,17 @@ package jvictor.math.vector;
 
 public class Vector3d implements jvictor.math.vector.interfaces.Vector3d<Vector3d> {
 
-    public double x = 0;
-    public double y = 0;
-    public double z = 0;
+    public double x;
+    public double y;
+    public double z;
 
-    public Vector3d () {}
+    public Vector3d () {
+        this(0, 0, 0);
+    }
+
+    public Vector3d (Vector3d v) {
+        this(v.x, v.y, v.z);
+    }
 
     public Vector3d (double x, double y, double z) {
         this.x = x;
@@ -65,17 +71,12 @@ public class Vector3d implements jvictor.math.vector.interfaces.Vector3d<Vector3
     }
 
     @Override
-    public Vector3d setLength(double l) {
-        return null;
-    }
-
-    @Override
     public Vector3d negate() {
         return null;
     }
 
     @Override
-    public Vector3d negate(Vector3d destination) {
+    public Vector3d negateCopy() {
         return null;
     }
 
@@ -85,7 +86,7 @@ public class Vector3d implements jvictor.math.vector.interfaces.Vector3d<Vector3
     }
 
     @Override
-    public Vector3d normalize(Vector3d destination) {
+    public Vector3d normalizeCopy() {
         return null;
     }
 
@@ -95,7 +96,17 @@ public class Vector3d implements jvictor.math.vector.interfaces.Vector3d<Vector3
     }
 
     @Override
-    public Vector3d scale(double s, Vector3d destination) {
+    public Vector3d scaleCopy(double s) {
+        return null;
+    }
+
+    @Override
+    public Vector3d scaleTo(double l) {
+        return null;
+    }
+
+    @Override
+    public Vector3d scaleCopyTo(double l) {
         return null;
     }
 
