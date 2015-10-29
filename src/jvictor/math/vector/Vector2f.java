@@ -35,9 +35,9 @@ public class Vector2f implements Vectorf<Vector2f> {
 
     @Override
     public float angleTo(Vector2f v) {
-        Vector2f v1 = normalizeCopy();
-        Vector2f v2 = v.normalizeCopy();
-        return (float)(Math.atan2(v2.y, v2.x) - Math.atan2(v1.y, v1.x));
+        float dot = this.dot(v);
+        float det = this.x * v.y - this.y * v.x;
+        return (float) Math.atan2(det, dot);
     }
 
     @Override

@@ -58,9 +58,9 @@ public class Vector3f implements jvictor.math.vector.interfaces.Vector3f<Vector3
      */
     @Override
     public float angleTo(Vector3f v) {
-        Vector3f cross = this.cross(v);
+        float det = this.cross(v).length();
         float dot = this.dot(v);
-        return (float) Math.atan2(cross.length(), dot);
+        return (float) Math.atan2(det, dot);
     }
 
     /**
