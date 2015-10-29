@@ -21,18 +21,14 @@ public interface Vectorf<VecType> {
 
     /**
      * Calculate and return the angle (in Radians) between <code>this</code> vector and <code>v</code>.
-     * Note: this calculation is performed relative to <code>this</code> vector.  In other words, this function
-     * returns the angle FROM: <code>this</code> vector TO: <code>v</code>.
      *
-     * @param v the vector to which <code>this</code> vector will be compared when calculating the angle.
+     * @param v the vector to compare to <code>this</code> vector when calculating the angle.
      * @return the angle between <code>this</code> vector and <code>v</code>.
      */
     float angleTo(VecType v);
 
     /**
      * Calculate and return the angle (in Radians) between the vectors <code>v1</code> and <code>v2</code>.
-     * Note: this calculation is performed relative to the vector <code>v1</code>.  In other words, this function
-     * returns the angle FROM: <code>v1</code> TO: <code>v2</code>.
      *
      * @param v1 the first vector in the angle calculation.
      * @param v2 the second vector in the angle calculation.
@@ -118,18 +114,18 @@ public interface Vectorf<VecType> {
     /**
      * Set <code>this</code> vector's length to <code>l</code>.
      *
-     * @param l the final length of <code>this</code> vector.
+     * @param length the final length of <code>this</code> vector.
      * @return <code>this</code> vector.
      */
-    VecType scaleTo(float l);
+    VecType scaleTo(float length);
 
     /**
      * Set the length of a copy of <code>this</code> vector to <code>l</code>.
      *
-     * @param l the final length of the copied vector.
+     * @param length the final length of the copied vector.
      * @return a scaled copy of <code>this</code> vector.
      */
-    VecType scaleCopyTo(float l);
+    VecType scaleCopyTo(float length);
 
     /**
      * Subtract the vector <code>v</code> from <code>this</code> vector and return <code>this</code> vector.

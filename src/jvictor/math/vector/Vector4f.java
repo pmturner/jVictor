@@ -26,91 +26,122 @@ public class Vector4f implements Vectorf<Vector4f> {
 
     @Override
     public Vector4f add(Vector4f v) {
-        return null;
+        this.x += v.x;
+        this.y += v.y;
+        this.z += v.z;
+        this.w += v.w;
+        return this;
     }
 
     @Override
     public Vector4f addVectors(Vector4f v1, Vector4f v2) {
-        return null;
+        Vector4f v1Copy = new Vector4f(v1);
+        return v1Copy.add(v2);
     }
 
     @Override
     public float angleTo(Vector4f v) {
-        return 0;
+        Vector4f v1 = this.normalizeCopy();
+        Vector4f v2 = v.normalizeCopy();
+        return (float) Math.acos(v1.dot(v2));
     }
 
     @Override
     public float angleBetween(Vector4f v1, Vector4f v2) {
-        return 0;
+        return v1.angleTo(v2);
     }
 
     @Override
     public float dot(Vector4f v) {
-        return 0;
+        return (this.x * v.x +
+                this.y * v.y +
+                this.z * v.z +
+                this.w * v.w);
     }
 
     @Override
     public float dotVectors(Vector4f v1, Vector4f v2) {
-        return 0;
+        return v1.dot(v2);
     }
 
     @Override
     public float length() {
-        return 0;
+        return (float) Math.sqrt(lengthSquared());
     }
 
     @Override
     public float lengthSquared() {
-        return 0;
+        return (this.x * this.x +
+                this.y * this.y +
+                this.z * this.z +
+                this.w * this.w);
     }
 
     @Override
     public Vector4f negate() {
-        return null;
+        this.x = -this.x;
+        this.y = -this.y;
+        this.z = -this.z;
+        this.w = -this.w;
+        return this;
     }
 
     @Override
     public Vector4f negateCopy() {
-        return null;
+        return (new Vector4f(this)).negate();
     }
 
     @Override
     public Vector4f normalize() {
-        return null;
+        float length = length();
+        this.x /= length;
+        this.y /= length;
+        this.z /= length;
+        this.w /= length;
+        return this;
     }
 
     @Override
     public Vector4f normalizeCopy() {
-        return null;
+        return (new Vector4f(this)).normalize();
     }
 
     @Override
     public Vector4f scale(float s) {
-        return null;
+        this.x *= s;
+        this.y *= s;
+        this.z *= s;
+        this.w *= s;
+        return this;
     }
 
     @Override
     public Vector4f scaleCopy(float s) {
-        return null;
+        return (new Vector4f(this)).scale(s);
     }
 
     @Override
-    public Vector4f scaleTo(float l) {
-        return null;
+    public Vector4f scaleTo(float length) {
+        return normalize().scale(length);
     }
 
     @Override
-    public Vector4f scaleCopyTo(float l) {
-        return null;
+    public Vector4f scaleCopyTo(float length) {
+        return (new Vector4f(this)).scaleTo(length);
     }
 
     @Override
     public Vector4f sub(Vector4f v) {
-        return null;
+        this.x -= v.x;
+        this.y -= v.y;
+        this.z -= v.z;
+        this.w -= v.w;
+        return this;
     }
 
     @Override
     public Vector4f subVectors(Vector4f v1, Vector4f v2) {
-        return null;
+        Vector4f v1Copy = new Vector4f(v1);
+        return v1Copy.sub(v2);
     }
 }

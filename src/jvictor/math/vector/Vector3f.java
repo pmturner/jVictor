@@ -48,6 +48,14 @@ public class Vector3f implements jvictor.math.vector.interfaces.Vector3f<Vector3
         return v1Copy.add(v2);
     }
 
+    /**
+     * Calculate and return the signed angle (in Radians) between <code>this</code> vector and <code>v</code>.
+     * Note: this calculation is performed relative to <code>this</code> vector.  In other words, this function
+     * returns the signed angle FROM: <code>this</code> vector TO: <code>v</code>.
+     *
+     * @param v the vector to which <code>this</code> vector will be compared when calculating the angle.
+     * @return the signed angle between <code>this</code> vector and <code>v</code>.
+     */
     @Override
     public float angleTo(Vector3f v) {
         Vector3f cross = this.cross(v);
@@ -55,6 +63,15 @@ public class Vector3f implements jvictor.math.vector.interfaces.Vector3f<Vector3
         return (float) Math.atan2(cross.length(), dot);
     }
 
+    /**
+     * Calculate and return the signed angle (in Radians) between the vectors <code>v1</code> and <code>v2</code>.
+     * Note: this calculation is performed relative to the vector <code>v1</code>.  In other words, this function
+     * returns the signed angle FROM: <code>v1</code> TO: <code>v2</code>.
+     *
+     * @param v1 the first vector in the angle calculation.
+     * @param v2 the second vector in the angle calculation.
+     * @return the signed angle between the vectors <code>v1</code> and <code>v2</code>.
+     */
     @Override
     public float angleBetween(Vector3f v1, Vector3f v2) {
         return v1.angleTo(v2);
@@ -121,13 +138,13 @@ public class Vector3f implements jvictor.math.vector.interfaces.Vector3f<Vector3
     }
 
     @Override
-    public Vector3f scaleTo(float l) {
-        return this.normalize().scale(l);
+    public Vector3f scaleTo(float length) {
+        return this.normalize().scale(length);
     }
 
     @Override
-    public Vector3f scaleCopyTo(float l) {
-        return (new Vector3f(this)).normalize().scale(l);
+    public Vector3f scaleCopyTo(float length) {
+        return (new Vector3f(this)).normalize().scale(length);
     }
 
     @Override

@@ -35,8 +35,8 @@ public class Vector2f implements Vectorf<Vector2f> {
 
     @Override
     public float angleTo(Vector2f v) {
-        Vector2f v1 = (new Vector2f(this)).normalize();
-        Vector2f v2 = (new Vector2f(v)).normalize();
+        Vector2f v1 = normalizeCopy();
+        Vector2f v2 = v.normalizeCopy();
         return (float)(Math.atan2(v2.y, v2.x) - Math.atan2(v1.y, v1.x));
     }
 
@@ -74,7 +74,7 @@ public class Vector2f implements Vectorf<Vector2f> {
 
     @Override
     public Vector2f negateCopy() {
-        return new Vector2f(this).negate();
+        return (new Vector2f(this)).negate();
     }
 
     @Override
@@ -87,7 +87,7 @@ public class Vector2f implements Vectorf<Vector2f> {
 
     @Override
     public Vector2f normalizeCopy() {
-        return new Vector2f(this).normalize();
+        return (new Vector2f(this)).normalize();
     }
 
     @Override
@@ -99,17 +99,17 @@ public class Vector2f implements Vectorf<Vector2f> {
 
     @Override
     public Vector2f scaleCopy(float s) {
-        return new Vector2f(this).scale(s);
+        return (new Vector2f(this)).scale(s);
     }
 
     @Override
-    public Vector2f scaleTo(float l) {
-        return this.normalize().scale(l);
+    public Vector2f scaleTo(float length) {
+        return this.normalize().scale(length);
     }
 
     @Override
-    public Vector2f scaleCopyTo(float l) {
-        return new Vector2f(this).scaleTo(l);
+    public Vector2f scaleCopyTo(float length) {
+        return (new Vector2f(this)).scaleTo(length);
     }
 
     @Override
