@@ -79,7 +79,7 @@ public class Vector2f implements Vectorf<Vector2f> {
 
     @Override
     public Vector2f normalize() {
-        float length = length();
+        float length = this.length();
         this.x /= length;
         this.y /= length;
         return this;
