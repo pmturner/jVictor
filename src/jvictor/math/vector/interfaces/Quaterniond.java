@@ -1,17 +1,21 @@
 package jvictor.math.vector.interfaces;
 
-import jvictor.math.matrix.Matrix4f;
+public interface Quaterniond<QuaternionType> extends Quaternion<QuaternionType> {
 
-public interface Quaterniond<QuaternionType> {
+    double dot(QuaternionType q);
 
-    Matrix4f toRotationMatrix();
+    double dotQuaternions(QuaternionType q1, QuaternionType q2);
 
-    QuaternionType mul(QuaternionType q2);
+    QuaternionType scale(double s);
 
-    QuaternionType mulQuaternions(QuaternionType q1, QuaternionType q2);
+    QuaternionType scaleCopy(double s);
 
-    QuaternionType rotateBy(QuaternionType q);
+    QuaternionType setFromAxisAngle(jvictor.math.vector.Vector3f axis, double angle);
 
-    QuaternionType normalize();
+    //QuaternionType setFromMatrix(Matrix3d m); //defined here because they are double matrices
+
+    //QuaternionType setFromMatrix(Matrix4d m); //defined here because they are double matrices
+
+    //Matrix4d toRotationMatrix(); //defined here because they are double matrices
 
 }

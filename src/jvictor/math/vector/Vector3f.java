@@ -6,36 +6,22 @@ public class Vector3f implements jvictor.math.vector.interfaces.Vector3f<Vector3
     public float y;
     public float z;
 
-    public Vector3f () {
+    public Vector3f() {
         this(0, 0, 0);
     }
 
-    public Vector3f (Vector2f v) {
+    public Vector3f(Vector2f v) {
         this(v.x, v.y, 0);
     }
 
-    public Vector3f (Vector3f v) {
+    public Vector3f(Vector3f v) {
         this(v.x, v.y, v.z);
     }
 
-    public Vector3f (float x, float y, float z) {
+    public Vector3f(float x, float y, float z) {
         this.x = x;
         this.y = y;
         this.z = z;
-    }
-
-    @Override
-    public Vector3f cross(Vector3f v) {
-        return new Vector3f(
-            this.y * v.z - this.z * v.y,
-            this.z * v.x - this.x * v.z,
-            this.x * v.y - this.y * v.x
-        );
-    }
-
-    @Override
-    public Vector3f crossVectors(Vector3f v1, Vector3f v2) {
-        return v1.cross(v2);
     }
 
     @Override
@@ -53,6 +39,11 @@ public class Vector3f implements jvictor.math.vector.interfaces.Vector3f<Vector3
     }
 
     @Override
+    public float angleBetween(Vector3f v1, Vector3f v2) {
+        return v1.angleTo(v2);
+    }
+
+    @Override
     public float angleTo(Vector3f v) {
         float det = this.cross(v).length();
         float dot = this.dot(v);
@@ -60,8 +51,17 @@ public class Vector3f implements jvictor.math.vector.interfaces.Vector3f<Vector3
     }
 
     @Override
-    public float angleBetween(Vector3f v1, Vector3f v2) {
-        return v1.angleTo(v2);
+    public Vector3f cross(Vector3f v) {
+        return new Vector3f(
+                this.y * v.z - this.z * v.y,
+                this.z * v.x - this.x * v.z,
+                this.x * v.y - this.y * v.x
+        );
+    }
+
+    @Override
+    public Vector3f crossVectors(Vector3f v1, Vector3f v2) {
+        return v1.cross(v2);
     }
 
     @Override
@@ -125,13 +125,13 @@ public class Vector3f implements jvictor.math.vector.interfaces.Vector3f<Vector3
     }
 
     @Override
-    public Vector3f scaleTo(float length) {
-        return this.normalize().scale(length);
+    public Vector3f scaleCopyTo(float length) {
+        return (new Vector3f(this)).normalize().scale(length);
     }
 
     @Override
-    public Vector3f scaleCopyTo(float length) {
-        return (new Vector3f(this)).normalize().scale(length);
+    public Vector3f scaleTo(float length) {
+        return this.normalize().scale(length);
     }
 
     @Override

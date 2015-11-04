@@ -7,15 +7,15 @@ public class Vector2f implements Vectorf<Vector2f> {
     public float x;
     public float y;
 
-    public Vector2f () {
+    public Vector2f() {
         this(0, 0);
     }
 
-    public Vector2f (Vector2f v) {
+    public Vector2f(Vector2f v) {
         this(v.x, v.y);
     }
 
-    public Vector2f (float x, float y) {
+    public Vector2f(float x, float y) {
         this.x = x;
         this.y = y;
     }
@@ -34,15 +34,15 @@ public class Vector2f implements Vectorf<Vector2f> {
     }
 
     @Override
+    public float angleBetween(Vector2f v1, Vector2f v2) {
+        return v1.angleTo(v2);
+    }
+
+    @Override
     public float angleTo(Vector2f v) {
         float dot = this.dot(v);
         float det = this.x * v.y - this.y * v.x;
         return (float) Math.atan2(det, dot);
-    }
-
-    @Override
-    public float angleBetween(Vector2f v1, Vector2f v2) {
-        return v1.angleTo(v2);
     }
 
     @Override
@@ -57,7 +57,7 @@ public class Vector2f implements Vectorf<Vector2f> {
 
     @Override
     public float length() {
-        return (float)Math.sqrt(this.lengthSquared());
+        return (float) Math.sqrt(this.lengthSquared());
     }
 
     @Override
@@ -103,13 +103,13 @@ public class Vector2f implements Vectorf<Vector2f> {
     }
 
     @Override
-    public Vector2f scaleTo(float length) {
-        return this.normalize().scale(length);
+    public Vector2f scaleCopyTo(float length) {
+        return (new Vector2f(this)).scaleTo(length);
     }
 
     @Override
-    public Vector2f scaleCopyTo(float length) {
-        return (new Vector2f(this)).scaleTo(length);
+    public Vector2f scaleTo(float length) {
+        return this.normalize().scale(length);
     }
 
     @Override
