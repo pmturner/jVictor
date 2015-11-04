@@ -10,6 +10,10 @@ public class Vector3f implements jvictor.math.vector.interfaces.Vector3f<Vector3
         this(0, 0, 0);
     }
 
+    public Vector3f (Vector2f v) {
+        this(v.x, v.y, 0);
+    }
+
     public Vector3f (Vector3f v) {
         this(v.x, v.y, v.z);
     }

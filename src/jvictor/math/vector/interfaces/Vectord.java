@@ -1,9 +1,6 @@
 package jvictor.math.vector.interfaces;
 
-public interface Vectord<VecType> {
-    VecType add(VecType v);
-    VecType addVectors(VecType v1, VecType v2);
-
+public interface Vectord<VecType> extends Vector<VecType> {
     double angleTo(VecType v);
     double angleBetween(VecType v1, VecType v2);
 
@@ -13,18 +10,9 @@ public interface Vectord<VecType> {
     double length();
     double lengthSquared();
 
-    VecType negate();
-    VecType negateCopy();
-
-    VecType normalize();
-    VecType normalizeCopy();
-
     VecType scale(double s);
     VecType scaleCopy(double s);
 
     VecType scaleTo(double l);
     VecType scaleCopyTo(double l);
-
-    VecType sub(VecType v);
-    VecType subVectors(VecType v1, VecType v2);
 }

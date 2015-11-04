@@ -13,6 +13,14 @@ public class Vector4f implements Vectorf<Vector4f> {
         this(0, 0, 0, 0);
     }
 
+    public Vector4f (Vector2f v) {
+        this(v.x, v.y, 0, 0);
+    }
+
+    public Vector4f (Vector3f v) {
+        this(v.x, v.y, v.z, 0);
+    }
+
     public Vector4f (Vector4f v) {
         this(v.x, v.y, v.z, v.w);
     }
@@ -22,6 +30,17 @@ public class Vector4f implements Vectorf<Vector4f> {
         this.y = y;
         this.z = z;
         this.w = w;
+    }
+
+    private Vector4f cross3d(Vector4f v) {
+        Vector3f v1 = new Vector3f(this.x, this.y, this.z);
+        Vector3f v2 = new Vector3f(v.x, v.y, v.z);
+        Vector3f cross = v1.cross(v2);
+        return new Vector4f(cross.x, cross.y, cross.z, 0);
+    }
+
+    private Vector4f crossVectors3d(Vector4f v1, Vector4f v2) {
+        return v1.cross3d(v2);
     }
 
     @Override
@@ -41,9 +60,9 @@ public class Vector4f implements Vectorf<Vector4f> {
 
     @Override
     public float angleTo(Vector4f v) {
-        Vector4f v1 = this.normalizeCopy();
-        Vector4f v2 = v.normalizeCopy();
-        return (float) Math.acos(v1.dot(v2));
+        float det = this.cross3d(v).length();
+        float dot = this.dot(v);
+        return (float) Math.atan2(det, dot);
     }
 
     @Override
