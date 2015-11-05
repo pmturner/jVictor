@@ -22,101 +22,125 @@ public class Vector3d implements jvictor.math.vector.interfaces.Vector3d<Vector3
 
     @Override
     public Vector3d add(Vector3d v) {
-        return null;
+        x += v.x;
+        y += v.y;
+        z += v.z;
+        return this;
     }
 
     @Override
     public Vector3d addVectors(Vector3d v1, Vector3d v2) {
-        return null;
+        Vector3d v1Copy = new Vector3d(v1);
+        return v1Copy.add(v2);
     }
 
     @Override
     public double angleBetween(Vector3d v1, Vector3d v2) {
-        return 0;
+        return v1.angleTo(v2);
     }
 
     @Override
     public double angleTo(Vector3d v) {
-        return 0;
+        double det = cross(v).length();
+        double dot = dot(v);
+        return Math.atan2(det, dot);
     }
 
     @Override
     public Vector3d cross(Vector3d v) {
-        return null;
+        return new Vector3d(
+                y * v.z - z * v.y,
+                z * v.x - x * v.z,
+                x * v.y - y * v.x
+        );
     }
 
     @Override
     public Vector3d crossVectors(Vector3d v1, Vector3d v2) {
-        return null;
+        return v1.cross(v2);
     }
 
     @Override
     public double dot(Vector3d v) {
-        return 0;
+        return x * v.x + y * v.y + z * v.z;
     }
 
     @Override
     public double dotVectors(Vector3d v1, Vector3d v2) {
-        return 0;
+        return v1.dot(v2);
     }
 
     @Override
     public double length() {
-        return 0;
+        return Math.sqrt(lengthSquared());
     }
 
     @Override
     public double lengthSquared() {
-        return 0;
+        return x * x + y * y + z * z;
     }
 
     @Override
     public Vector3d negate() {
-        return null;
+        x = -x;
+        y = -y;
+        z = -z;
+        return this;
     }
 
     @Override
     public Vector3d negateCopy() {
-        return null;
+        return new Vector3d(this).negate();
     }
 
     @Override
     public Vector3d normalize() {
-        return null;
+        double length = length();
+        x /= length;
+        y /= length;
+        z /= length;
+        return this;
     }
 
     @Override
     public Vector3d normalizeCopy() {
-        return null;
+        return new Vector3d(this).normalize();
     }
 
     @Override
     public Vector3d scale(double s) {
-        return null;
+        x *= s;
+        y *= s;
+        z *= s;
+        return this;
     }
 
     @Override
     public Vector3d scaleCopy(double s) {
-        return null;
+        return new Vector3d(this).scale(s);
     }
 
     @Override
     public Vector3d scaleCopyTo(double l) {
-        return null;
+        return new Vector3d(this).scaleTo(l);
     }
 
     @Override
     public Vector3d scaleTo(double l) {
-        return null;
+        return normalize().scale(l);
     }
 
     @Override
     public Vector3d sub(Vector3d v) {
-        return null;
+        x -= v.x;
+        y -= v.y;
+        z -= v.z;
+        return this;
     }
 
     @Override
     public Vector3d subVectors(Vector3d v1, Vector3d v2) {
-        return null;
+        Vector3d v1Copy = new Vector3d(v1);
+        return v1Copy.sub(v2);
     }
 }
