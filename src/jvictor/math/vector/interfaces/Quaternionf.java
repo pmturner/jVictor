@@ -1,17 +1,22 @@
 package jvictor.math.vector.interfaces;
 
-import com.sun.javafx.geom.Matrix3f;
+import jvictor.math.matrix.Matrix3f;
 import jvictor.math.matrix.Matrix4f;
+import jvictor.math.vector.*;
 
 public interface Quaternionf<QuaternionType> extends Quaternion<QuaternionType> {
+
+    float angleBetween(QuaternionType q1, QuaternionType q2);
+
+    float angleTo(QuaternionType q);
 
     float dot(QuaternionType q);
 
     float dotQuaternions(QuaternionType q1, QuaternionType q2);
 
-    QuaternionType scale(float s);
+    float getAngle();
 
-    QuaternionType scaleCopy(float s);
+    jvictor.math.vector.Vector3f getAxis();
 
     QuaternionType setFromAxisAngle(jvictor.math.vector.Vector3f axis, float angle);
 
