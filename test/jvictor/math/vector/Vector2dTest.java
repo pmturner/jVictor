@@ -6,149 +6,133 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class Vector2fTest {
+public class Vector2dTest {
 
     /**
      * We need this for all functions that involve normalization because normalization introduces floating point errors
      * into those calculations.
      */
-    final float NORMALIZATION_TOLERANCE = 0.000001f;
+    final double NORMALIZATION_TOLERANCE = 0.000000000000001;
 
-    Vector2f v1;
-    Vector2f v2;
-    float angle;
-    float targetAngle;
-    float dot;
-    float targetDot;
-    float length;
-    float targetLength;
-    float lengthSq;
-    float targetLengthSq;
+    Vector2d v1;
+    Vector2d v2;
+    double angle;
+    double targetAngle;
+    double dot;
+    double targetDot;
+    double length;
+    double targetLength;
+    double lengthSq;
+    double targetLengthSq;
 
     @Test
     public void testAdd() throws Exception {
-        v1 = new Vector2f(1, 1);
-        v2 = new Vector2f(1, 1);
-        Vector2f result = v1.add(v2);
+        v1 = new Vector2d(1, 2);
+        v2 = new Vector2d(1, 1);
 
-        assertTrue(result.x == 2 && result.y == 2);
-        assertTrue(v1.x == 2 && v1.y == 2);
+        v1.add(v2);
+
+        assertTrue(v1.x == 2 && v1.y == 3);
         assertTrue(v2.x == 1 && v2.y == 1);
     }
 
     @Test
     public void testAddVectors() throws Exception {
-        v1 = new Vector2f(1, 1);
-        v2 = new Vector2f(1, 1);
-        Vector2f result = new Vector2f().addVectors(v1, v2);
+        v1 = new Vector2d(1, 2);
+        v2 = new Vector2d(1, 1);
 
-        assertTrue(result.x == 2f && result.y == 2f);
-        assertTrue(v1.x == 1f && v1.y == 1f);
-        assertTrue(v2.x == 1f && v2.y == 1f);
+        Vector2d sum = new Vector2d().addVectors(v1, v2);
+
+        assertTrue(sum.x == 2 && sum.y == 3);
+        assertTrue(v1.x == 1 && v1.y == 2);
+        assertTrue(v2.x == 1 && v2.y == 1);
     }
 
     @Test
     public void testAngleBetween() throws Exception {
-        v1 = new Vector2f(1, 1);
-        v2 = new Vector2f(1, 1);
+        v1 = new Vector2d(1, 1);
+        v2 = new Vector2d(1, 1);
 
-        angle = new Vector2f().angleBetween(v1, v2);
+        angle = new Vector2d().angleBetween(v1, v2);
         targetAngle = 0;
 
         assertTrue(angle == targetAngle);
 
-        v1 = new Vector2f(1, 0);
-        v2 = new Vector2f(0, 1);
+        v1 = new Vector2d(1, 0);
+        v2 = new Vector2d(0, 1);
 
-        angle = new Vector2f().angleBetween(v1, v2);
-        targetAngle = (float) Math.PI / 2; //  90 degrees
+        angle = new Vector2d().angleBetween(v1, v2);
+        targetAngle = Math.PI / 2; //  90 degrees
 
         assertTrue(angle == targetAngle);
 
-        v1 = new Vector2f(1, 0);
-        v2 = new Vector2f(0, -1);
+        v1 = new Vector2d(1, 0);
+        v2 = new Vector2d(0, -1);
 
-        angle = new Vector2f().angleBetween(v1, v2);
-        targetAngle = (float) -Math.PI / 2; // -90 degrees
+        angle = new Vector2d().angleBetween(v1, v2);
+        targetAngle = -Math.PI / 2; // -90 degrees
 
         assertTrue(angle == targetAngle);
     }
 
     @Test
     public void testAngleTo() throws Exception {
-        v1 = new Vector2f(1, 1);
-        v2 = new Vector2f(1, 1);
+        v1 = new Vector2d(1, 1);
+        v2 = new Vector2d(1, 1);
 
         angle = v1.angleTo(v2);
         targetAngle = 0;
 
         assertTrue(angle == targetAngle);
 
-        v1 = new Vector2f(1, 0);
-        v2 = new Vector2f(0, 1);
+        v1 = new Vector2d(1, 0);
+        v2 = new Vector2d(0, 1);
 
         angle = v1.angleTo(v2);
-        targetAngle = (float) Math.PI / 2; //  90 degrees
+        targetAngle = Math.PI / 2; //  90 degrees
 
         assertTrue(angle == targetAngle);
 
-        v1 = new Vector2f(1, 0);
-        v2 = new Vector2f(0, -1);
+        v1 = new Vector2d(1, 0);
+        v2 = new Vector2d(0, -1);
 
         angle = v1.angleTo(v2);
-        targetAngle = (float) -Math.PI / 2; // -90 degrees
+        targetAngle = -Math.PI / 2; // -90 degrees
 
         assertTrue(angle == targetAngle);
     }
 
     @Test
     public void testDot() throws Exception {
-        v1 = new Vector2f(1, 1);
-        v2 = new Vector2f(2, 2);
+        v1 = new Vector2d(1, 2);
+        v2 = new Vector2d(3, 4);
 
         dot = v1.dot(v2);
-        targetDot = 4;
 
-        assertTrue(dot == targetDot);
-
-        v1 = new Vector2f(-1, 1);
-        v2 = new Vector2f(2, 2);
-
-        dot = v1.dot(v2);
-        targetDot = 0;
-
-        assertTrue(dot == targetDot);
+        assertTrue(dot == 11);
     }
 
     @Test
     public void testDotVectors() throws Exception {
-        v1 = new Vector2f(1, 1);
-        v2 = new Vector2f(2, 2);
+        v1 = new Vector2d(1, 2);
+        v2 = new Vector2d(3, 4);
 
-        dot = new Vector2f().dotVectors(v1, v2);
-        targetDot = 4;
-
-        assertTrue(dot == targetDot);
-
-        v1 = new Vector2f(-1, 1);
-        v2 = new Vector2f(2, 2);
-
-        dot = new Vector2f().dotVectors(v1, v2);
-        targetDot = 0;
+        dot = new Vector2d().dotVectors(v1, v2);
+        targetDot = 11;
 
         assertTrue(dot == targetDot);
     }
 
     @Test
     public void testLength() throws Exception {
-        v1 = new Vector2f(1, 0);
+        v1 = new Vector2d(1, 0);
 
         length = v1.length();
         targetLength = 1;
 
         assertTrue(length == targetLength);
 
-        v1 = new Vector2f(0, -10);
+        v1 = new Vector2d(0, -10);
 
         length = v1.length();
         targetLength = 10;
@@ -158,14 +142,14 @@ public class Vector2fTest {
 
     @Test
     public void testLengthSquared() throws Exception {
-        v1 = new Vector2f(1, 0);
+        v1 = new Vector2d(1, 0);
 
         lengthSq = v1.lengthSquared();
         targetLengthSq = 1;
 
         assertTrue(lengthSq == targetLengthSq);
 
-        v1 = new Vector2f(0, -10);
+        v1 = new Vector2d(0, -10);
 
         lengthSq = v1.lengthSquared();
         targetLengthSq = 100;
@@ -175,24 +159,21 @@ public class Vector2fTest {
 
     @Test
     public void testNegate() throws Exception {
-        v1 = new Vector2f(1, -2);
+        v1 = new Vector2d(1, 2);
 
         v1.negate();
 
-        assertTrue(v1.x == -1);
-        assertTrue(v1.y == 2);
+        assertTrue(v1.x == -1 && v1.y == -2);
     }
 
     @Test
     public void testNegateCopy() throws Exception {
-        v1 = new Vector2f(1, -2);
+        v1 = new Vector2d(1, 2);
 
         v2 = v1.negateCopy();
 
-        assertTrue(v1.x == 1);
-        assertTrue(v1.y == -2);
-        assertTrue(v2.x == -1);
-        assertTrue(v2.y == 2);
+        assertTrue(v1.x == 1 && v1.y == 2);
+        assertTrue(v2.x == -1 && v2.y == -2);
     }
 
     @Test
@@ -201,7 +182,7 @@ public class Vector2fTest {
          * Normalization causes some error.  This cannot be avoided, so we will check if it is close to the target
          * length instead of strict equality.
          */
-        v1 = new Vector2f(1, 1);
+        v1 = new Vector2d(1, 1);
 
         v1.normalize();
         length = v1.length();
@@ -209,7 +190,7 @@ public class Vector2fTest {
 
         assertTrue(Math.abs(targetLength - length) < NORMALIZATION_TOLERANCE);
 
-        v1 = new Vector2f(25, -10);
+        v1 = new Vector2d(25, -10);
 
         v1.normalize();
         length = v1.length();
@@ -224,7 +205,7 @@ public class Vector2fTest {
          * Normalization causes some error.  This cannot be avoided, so we will check if it is close to the target
          * length instead of strict equality.
          */
-        v1 = new Vector2f(1, 1);
+        v1 = new Vector2d(1, 1);
 
         v2 = v1.normalizeCopy();
         length = v2.length();
@@ -233,7 +214,7 @@ public class Vector2fTest {
         assertTrue(Math.abs(targetLength - length) < NORMALIZATION_TOLERANCE);
         assertTrue(v1.x == 1 && v1.y == 1);
 
-        v1 = new Vector2f(25, -10);
+        v1 = new Vector2d(25, -10);
 
         v2 = v1.normalizeCopy();
         length = v2.length();
@@ -245,34 +226,21 @@ public class Vector2fTest {
 
     @Test
     public void testScale() throws Exception {
-        v1 = new Vector2f(1, 0);
+        v1 = new Vector2d(1, 2);
 
         v1.scale(5);
 
-        assertTrue(v1.x == 5 && v1.y == 0);
-
-        v1 = new Vector2f(1, -2);
-
-        v1.scale(3);
-
-        assertTrue(v1.x == 3 && v1.y == -6);
+        assertTrue(v1.x == 5 && v1.y == 10);
     }
 
     @Test
     public void testScaleCopy() throws Exception {
-        v1 = new Vector2f(1, 0);
+        v1 = new Vector2d(1, 2);
 
         v2 = v1.scaleCopy(5);
 
-        assertTrue(v1.x == 1 && v1.y == 0);
-        assertTrue(v2.x == 5 && v2.y == 0);
-
-        v1 = new Vector2f(1, -2);
-
-        v2 = v1.scaleCopy(3);
-
-        assertTrue(v1.x == 1 && v1.y == -2);
-        assertTrue(v2.x == 3 && v2.y == -6);
+        assertTrue(v1.x == 1 && v1.y == 2);
+        assertTrue(v2.x == 5 && v2.y == 10);
     }
 
     @Test
@@ -281,11 +249,11 @@ public class Vector2fTest {
          * Normalization causes some error.  This cannot be avoided, so we will check if it is close to the target
          * length instead of strict equality.
          *
-         * ScaleCopyTo involves normalization, so this must be handled here as well.
+         * ScaleTo involves normalization, so this must be handled here as well.
          */
-        float scaledTolerance;
+        double scaledTolerance;
 
-        v1 = new Vector2f(1, 1);
+        v1 = new Vector2d(1, 1);
         targetLength = 5;
         v2 = v1.scaleCopyTo(targetLength);
         length = v2.length();
@@ -294,7 +262,7 @@ public class Vector2fTest {
         assertTrue(Math.abs(targetLength - length) < scaledTolerance);
         assertTrue(v1.x == 1 && v1.y == 1);
 
-        v1 = new Vector2f(25, -10);
+        v1 = new Vector2d(25, -10);
         targetLength = 2;
         v2 = v1.scaleCopyTo(targetLength);
         length = v2.length();
@@ -312,9 +280,9 @@ public class Vector2fTest {
          *
          * ScaleTo involves normalization, so this must be handled here as well.
          */
-        float scaledTolerance;
+        double scaledTolerance;
 
-        v1 = new Vector2f(1, 1);
+        v1 = new Vector2d(1, 1);
         targetLength = 5;
         v1.scaleTo(targetLength);
         length = v1.length();
@@ -322,7 +290,7 @@ public class Vector2fTest {
 
         assertTrue(Math.abs(targetLength - length) < scaledTolerance);
 
-        v1 = new Vector2f(25, -10);
+        v1 = new Vector2d(25, -10);
         targetLength = 2;
         v1.scaleTo(targetLength);
         length = v1.length();
@@ -333,24 +301,24 @@ public class Vector2fTest {
 
     @Test
     public void testSub() throws Exception {
-        v1 = new Vector2f(-1, 1);
-        v2 = new Vector2f(1, 2);
+        v1 = new Vector2d(1, 2);
+        v2 = new Vector2d(1, 1);
 
         v1.sub(v2);
 
-        assertTrue(v1.x == -2 && v1.y == -1);
-        assertTrue(v2.x == 1 && v2.y == 2);
+        assertTrue(v1.x == 0 && v1.y == 1);
+        assertTrue(v2.x == 1 && v2.y == 1);
     }
 
     @Test
     public void testSubVectors() throws Exception {
-        v1 = new Vector2f(-1, 1);
-        v2 = new Vector2f(1, 2);
+        v1 = new Vector2d(1, 2);
+        v2 = new Vector2d(1, 1);
 
-        Vector2f diff = new Vector2f().subVectors(v1, v2);
+        Vector2d diff = new Vector2d().subVectors(v1, v2);
 
-        assertTrue(v1.x == -1 && v1.y == 1);
-        assertTrue(v2.x == 1 && v2.y == 2);
-        assertTrue(diff.x == -2 && diff.y == -1);
+        assertTrue(diff.x == 0 && diff.y == 1);
+        assertTrue(v1.x == 1 && v1.y == 2);
+        assertTrue(v2.x == 1 && v2.y == 1);
     }
 }

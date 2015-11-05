@@ -22,8 +22,8 @@ public class Vector2f implements Vectorf<Vector2f> {
 
     @Override
     public Vector2f add(Vector2f v) {
-        this.x += v.x;
-        this.y += v.y;
+        x += v.x;
+        y += v.y;
         return this;
     }
 
@@ -40,14 +40,14 @@ public class Vector2f implements Vectorf<Vector2f> {
 
     @Override
     public float angleTo(Vector2f v) {
-        float dot = this.dot(v);
-        float det = this.x * v.y - this.y * v.x;
+        float dot = dot(v);
+        float det = x * v.y - y * v.x;
         return (float) Math.atan2(det, dot);
     }
 
     @Override
     public float dot(Vector2f v) {
-        return this.x * v.x + this.y * v.y;
+        return x * v.x + y * v.y;
     }
 
     @Override
@@ -57,18 +57,18 @@ public class Vector2f implements Vectorf<Vector2f> {
 
     @Override
     public float length() {
-        return (float) Math.sqrt(this.lengthSquared());
+        return (float) Math.sqrt(lengthSquared());
     }
 
     @Override
     public float lengthSquared() {
-        return this.x * this.x + this.y * this.y;
+        return x * x + y * y;
     }
 
     @Override
     public Vector2f negate() {
-        this.x = -this.x;
-        this.y = -this.y;
+        x = -x;
+        y = -y;
         return this;
     }
 
@@ -79,9 +79,9 @@ public class Vector2f implements Vectorf<Vector2f> {
 
     @Override
     public Vector2f normalize() {
-        float length = this.length();
-        this.x /= length;
-        this.y /= length;
+        float length = length();
+        x /= length;
+        y /= length;
         return this;
     }
 
@@ -92,8 +92,8 @@ public class Vector2f implements Vectorf<Vector2f> {
 
     @Override
     public Vector2f scale(float s) {
-        this.x *= s;
-        this.y *= s;
+        x *= s;
+        y *= s;
         return this;
     }
 
@@ -109,13 +109,13 @@ public class Vector2f implements Vectorf<Vector2f> {
 
     @Override
     public Vector2f scaleTo(float length) {
-        return this.normalize().scale(length);
+        return normalize().scale(length);
     }
 
     @Override
     public Vector2f sub(Vector2f v) {
-        this.x -= v.x;
-        this.y -= v.y;
+        x -= v.x;
+        y -= v.y;
         return this;
     }
 

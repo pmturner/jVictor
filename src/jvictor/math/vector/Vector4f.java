@@ -34,10 +34,10 @@ public class Vector4f implements Vectorf<Vector4f> {
 
     @Override
     public Vector4f add(Vector4f v) {
-        this.x += v.x;
-        this.y += v.y;
-        this.z += v.z;
-        this.w += v.w;
+        x += v.x;
+        y += v.y;
+        z += v.z;
+        w += v.w;
         return this;
     }
 
@@ -54,13 +54,13 @@ public class Vector4f implements Vectorf<Vector4f> {
 
     @Override
     public float angleTo(Vector4f v) {
-        float det = this.cross3d(v).length();
-        float dot = this.dot(v);
+        float det = cross3d(v).length();
+        float dot = dot(v);
         return (float) Math.atan2(det, dot);
     }
 
     private Vector4f cross3d(Vector4f v) {
-        Vector3f v1 = new Vector3f(this.x, this.y, this.z);
+        Vector3f v1 = new Vector3f(x, y, z);
         Vector3f v2 = new Vector3f(v.x, v.y, v.z);
         Vector3f cross = v1.cross(v2);
         return new Vector4f(cross.x, cross.y, cross.z, 0);
@@ -72,10 +72,10 @@ public class Vector4f implements Vectorf<Vector4f> {
 
     @Override
     public float dot(Vector4f v) {
-        return (this.x * v.x +
-                this.y * v.y +
-                this.z * v.z +
-                this.w * v.w);
+        return (x * v.x +
+                y * v.y +
+                z * v.z +
+                w * v.w);
     }
 
     @Override
@@ -90,18 +90,18 @@ public class Vector4f implements Vectorf<Vector4f> {
 
     @Override
     public float lengthSquared() {
-        return (this.x * this.x +
-                this.y * this.y +
-                this.z * this.z +
-                this.w * this.w);
+        return (x * x +
+                y * y +
+                z * z +
+                w * w);
     }
 
     @Override
     public Vector4f negate() {
-        this.x = -this.x;
-        this.y = -this.y;
-        this.z = -this.z;
-        this.w = -this.w;
+        x = -x;
+        y = -y;
+        z = -z;
+        w = -w;
         return this;
     }
 
@@ -113,10 +113,10 @@ public class Vector4f implements Vectorf<Vector4f> {
     @Override
     public Vector4f normalize() {
         float length = length();
-        this.x /= length;
-        this.y /= length;
-        this.z /= length;
-        this.w /= length;
+        x /= length;
+        y /= length;
+        z /= length;
+        w /= length;
         return this;
     }
 
@@ -127,10 +127,10 @@ public class Vector4f implements Vectorf<Vector4f> {
 
     @Override
     public Vector4f scale(float s) {
-        this.x *= s;
-        this.y *= s;
-        this.z *= s;
-        this.w *= s;
+        x *= s;
+        y *= s;
+        z *= s;
+        w *= s;
         return this;
     }
 
@@ -151,10 +151,10 @@ public class Vector4f implements Vectorf<Vector4f> {
 
     @Override
     public Vector4f sub(Vector4f v) {
-        this.x -= v.x;
-        this.y -= v.y;
-        this.z -= v.z;
-        this.w -= v.w;
+        x -= v.x;
+        y -= v.y;
+        z -= v.z;
+        w -= v.w;
         return this;
     }
 

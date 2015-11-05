@@ -32,7 +32,7 @@ public class Quaternionf implements jvictor.math.vector.interfaces.Quaternionf<Q
 
     @Override
     public float angleTo(Quaternionf q) {
-        Quaternionf thisConjugate = this.negateCopy();
+        Quaternionf thisConjugate = negateCopy();
         Quaternionf diff = new Quaternionf().mulQuaternions(q, thisConjugate);
         return diff.getAngle();
     }
@@ -56,13 +56,13 @@ public class Quaternionf implements jvictor.math.vector.interfaces.Quaternionf<Q
     public Vector3f getAxis() {
         if (w > 1) {
             // avoid errors in Sqrt
-            this.normalize();
+            normalize();
         }
         float div = (float) Math.sqrt(1 - (w * w));
 
         Vector3f axis = new Vector3f();
 
-        if (div < 0.001f) { //TODO: might need a better value for this.
+        if (div < 0.001f) { //TODO: might need a better value for
             axis.x = x;
             axis.y = y;
             axis.z = z;
@@ -124,10 +124,10 @@ public class Quaternionf implements jvictor.math.vector.interfaces.Quaternionf<Q
     @Override
     public Quaternionf rotateBy(Quaternionf q) {
         Quaternionf result = new Quaternionf().mulQuaternions(q, this);
-        this.w = result.w;
-        this.x = result.x;
-        this.y = result.y;
-        this.z = result.z;
+        w = result.w;
+        x = result.x;
+        y = result.y;
+        z = result.z;
         return this;
     }
 
@@ -138,10 +138,10 @@ public class Quaternionf implements jvictor.math.vector.interfaces.Quaternionf<Q
         float halfAngle = angle * 0.5f;
         float sinHalfAngle = (float) Math.sin(halfAngle);
 
-        this.w = (float) Math.cos(halfAngle);
-        this.x = sinHalfAngle * axis.x;
-        this.y = sinHalfAngle * axis.y;
-        this.z = sinHalfAngle * axis.z;
+        w = (float) Math.cos(halfAngle);
+        x = sinHalfAngle * axis.x;
+        y = sinHalfAngle * axis.y;
+        z = sinHalfAngle * axis.z;
         return this;
     }
 
@@ -204,7 +204,7 @@ public class Quaternionf implements jvictor.math.vector.interfaces.Quaternionf<Q
             TODO: possibly normalize the quaternion here (it MUST be normalized, but we don't know if it has already
             TODO: been done or not yet).
         */
-        this.normalize();
+        normalize();
 
         float xSq = x * x;
         float ySq = y * y;

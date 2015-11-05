@@ -22,91 +22,106 @@ public class Vector2d implements Vectord<Vector2d> {
 
     @Override
     public Vector2d add(Vector2d v) {
-        return null;
+        x += v.x;
+        y += v.y;
+        return this;
     }
 
     @Override
     public Vector2d addVectors(Vector2d v1, Vector2d v2) {
-        return null;
+        Vector2d v1Copy = new Vector2d(v1);
+        return v1Copy.add(v2);
     }
 
     @Override
     public double angleBetween(Vector2d v1, Vector2d v2) {
-        return 0;
+        return v1.angleTo(v2);
     }
 
     @Override
     public double angleTo(Vector2d v) {
-        return 0;
+        double dot = dot(v);
+        double det = x * v.y - y * v.x;
+        return Math.atan2(det, dot);
     }
 
     @Override
     public double dot(Vector2d v) {
-        return 0;
+        return x * v.x + y * v.y;
     }
 
     @Override
     public double dotVectors(Vector2d v1, Vector2d v2) {
-        return 0;
+        return v1.dot(v2);
     }
 
     @Override
     public double length() {
-        return 0;
+        return Math.sqrt(lengthSquared());
     }
 
     @Override
     public double lengthSquared() {
-        return 0;
+        return x * x + y * y;
     }
 
     @Override
     public Vector2d negate() {
-        return null;
+        x = -x;
+        y = -y;
+        return this;
     }
 
     @Override
     public Vector2d negateCopy() {
-        return null;
+        return new Vector2d(this).negate();
     }
 
     @Override
     public Vector2d normalize() {
-        return null;
+        double length = length();
+        x /= length;
+        y /= length;
+        return this;
     }
 
     @Override
     public Vector2d normalizeCopy() {
-        return null;
+        return new Vector2d(this).normalize();
     }
 
     @Override
     public Vector2d scale(double s) {
-        return null;
+        x *= s;
+        y *= s;
+        return this;
     }
 
     @Override
     public Vector2d scaleCopy(double s) {
-        return null;
+        return new Vector2d(this).scale(s);
     }
 
     @Override
     public Vector2d scaleCopyTo(double l) {
-        return null;
+        return new Vector2d(this).scaleTo(l);
     }
 
     @Override
     public Vector2d scaleTo(double l) {
-        return null;
+        return normalize().scale(l);
     }
 
     @Override
     public Vector2d sub(Vector2d v) {
-        return null;
+        x -= v.x;
+        y -= v.y;
+        return this;
     }
 
     @Override
     public Vector2d subVectors(Vector2d v1, Vector2d v2) {
-        return null;
+        Vector2d v1Copy = new Vector2d(v1);
+        return v1Copy.sub(v2);
     }
 }

@@ -26,9 +26,9 @@ public class Vector3f implements jvictor.math.vector.interfaces.Vector3f<Vector3
 
     @Override
     public Vector3f add(Vector3f v) {
-        this.x += v.x;
-        this.y += v.y;
-        this.z += v.z;
+        x += v.x;
+        y += v.y;
+        z += v.z;
         return this;
     }
 
@@ -45,17 +45,17 @@ public class Vector3f implements jvictor.math.vector.interfaces.Vector3f<Vector3
 
     @Override
     public float angleTo(Vector3f v) {
-        float det = this.cross(v).length();
-        float dot = this.dot(v);
+        float det = cross(v).length();
+        float dot = dot(v);
         return (float) Math.atan2(det, dot);
     }
 
     @Override
     public Vector3f cross(Vector3f v) {
         return new Vector3f(
-                this.y * v.z - this.z * v.y,
-                this.z * v.x - this.x * v.z,
-                this.x * v.y - this.y * v.x
+                y * v.z - z * v.y,
+                z * v.x - x * v.z,
+                x * v.y - y * v.x
         );
     }
 
@@ -66,7 +66,7 @@ public class Vector3f implements jvictor.math.vector.interfaces.Vector3f<Vector3
 
     @Override
     public float dot(Vector3f v) {
-        return this.x * v.x + this.y * v.y + this.z * v.z;
+        return x * v.x + y * v.y + z * v.z;
     }
 
     @Override
@@ -81,14 +81,14 @@ public class Vector3f implements jvictor.math.vector.interfaces.Vector3f<Vector3
 
     @Override
     public float lengthSquared() {
-        return this.x * this.x + this.y * this.y + this.z * this.z;
+        return x * x + y * y + z * z;
     }
 
     @Override
     public Vector3f negate() {
-        this.x = -this.x;
-        this.y = -this.y;
-        this.z = -this.z;
+        x = -x;
+        y = -y;
+        z = -z;
         return this;
     }
 
@@ -100,9 +100,9 @@ public class Vector3f implements jvictor.math.vector.interfaces.Vector3f<Vector3
     @Override
     public Vector3f normalize() {
         float length = length();
-        this.x /= length;
-        this.y /= length;
-        this.z /= length;
+        x /= length;
+        y /= length;
+        z /= length;
         return this;
     }
 
@@ -113,9 +113,9 @@ public class Vector3f implements jvictor.math.vector.interfaces.Vector3f<Vector3
 
     @Override
     public Vector3f scale(float s) {
-        this.x *= s;
-        this.y *= s;
-        this.z *= s;
+        x *= s;
+        y *= s;
+        z *= s;
         return this;
     }
 
@@ -131,14 +131,14 @@ public class Vector3f implements jvictor.math.vector.interfaces.Vector3f<Vector3
 
     @Override
     public Vector3f scaleTo(float length) {
-        return this.normalize().scale(length);
+        return normalize().scale(length);
     }
 
     @Override
     public Vector3f sub(Vector3f v) {
-        this.x -= v.x;
-        this.y -= v.y;
-        this.z -= v.z;
+        x -= v.x;
+        y -= v.y;
+        z -= v.z;
         return this;
     }
 
