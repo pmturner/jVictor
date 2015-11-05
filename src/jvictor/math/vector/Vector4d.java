@@ -9,15 +9,15 @@ public class Vector4d implements Vectord<Vector4d> {
     public double z;
     public double w;
 
-    public Vector4d () {
+    public Vector4d() {
         this(0, 0, 0, 0);
     }
 
-    public Vector4d (Vector4d v) {
+    public Vector4d(Vector4d v) {
         this(v.x, v.y, v.z, v.w);
     }
 
-    public Vector4d (double x, double y, double z, double w) {
+    public Vector4d(double x, double y, double z, double w) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -35,12 +35,12 @@ public class Vector4d implements Vectord<Vector4d> {
     }
 
     @Override
-    public double angleTo(Vector4d v) {
+    public double angleBetween(Vector4d v1, Vector4d v2) {
         return 0;
     }
 
     @Override
-    public double angleBetween(Vector4d v1, Vector4d v2) {
+    public double angleTo(Vector4d v) {
         return 0;
     }
 
@@ -95,12 +95,12 @@ public class Vector4d implements Vectord<Vector4d> {
     }
 
     @Override
-    public Vector4d scaleTo(double l) {
+    public Vector4d scaleCopyTo(double l) {
         return null;
     }
 
     @Override
-    public Vector4d scaleCopyTo(double l) {
+    public Vector4d scaleTo(double l) {
         return null;
     }
 

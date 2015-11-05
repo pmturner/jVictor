@@ -36,36 +36,6 @@ public class Vector3fTest {
     }
 
     @Test
-    public void testCross() throws Exception {
-        v1 = new Vector3f(1, 2, 3);
-        v2 = new Vector3f(1, 5, 2);
-
-        Vector3f cross = v1.cross(v2);
-
-        targetAngle = (float) Math.PI / 2;
-
-        angle = cross.angleTo(v1);
-        assertTrue(Math.abs(targetAngle - angle) < NORMALIZATION_TOLERANCE);
-        angle = cross.angleTo(v2);
-        assertTrue(Math.abs(targetAngle - angle) < NORMALIZATION_TOLERANCE);
-    }
-
-    @Test
-    public void testCrossVectors() throws Exception {
-        v1 = new Vector3f(1, 2, 3);
-        v2 = new Vector3f(1, 5, 2);
-
-        Vector3f cross = new Vector3f().crossVectors(v1, v2);
-
-        targetAngle = (float) Math.PI / 2;
-
-        angle = cross.angleTo(v1);
-        assertTrue(Math.abs(targetAngle - angle) < NORMALIZATION_TOLERANCE);
-        angle = cross.angleTo(v2);
-        assertTrue(Math.abs(targetAngle - angle) < NORMALIZATION_TOLERANCE);
-    }
-
-    @Test
     public void testAdd() throws Exception {
         v1 = new Vector3f(1, 1, 1);
         v2 = new Vector3f(1, 1, 1);
@@ -85,6 +55,33 @@ public class Vector3fTest {
         assertTrue(sum.x == 2 && sum.y == 2 && sum.z == 2);
         assertTrue(v1.x == 1 && v1.y == 1 && v1.z == 1);
         assertTrue(v2.x == 1 && v2.y == 1 && v2.z == 1);
+    }
+
+    @Test
+    public void testAngleBetween() throws Exception {
+        v1 = new Vector3f(1, 1, 1);
+        v2 = new Vector3f(1, 1, 1);
+
+        angle = new Vector3f().angleBetween(v1, v2);
+        targetAngle = 0;
+
+        assertTrue(angle == targetAngle);
+
+        v1 = new Vector3f(1, 0, 0);
+        v2 = new Vector3f(0, 1, 0);
+
+        angle = new Vector3f().angleBetween(v1, v2);
+        targetAngle = (float) Math.PI / 2; //  90 degrees
+
+        assertTrue(angle == targetAngle);
+
+        v1 = new Vector3f(1, 0, 0);
+        v2 = new Vector3f(0, -1, 0);
+
+        angle = new Vector3f().angleBetween(v1, v2);
+        targetAngle = (float) Math.PI / 2; // 90 degrees
+
+        assertTrue(angle == targetAngle);
     }
 
     @Test
@@ -115,30 +112,33 @@ public class Vector3fTest {
     }
 
     @Test
-    public void testAngleBetween() throws Exception {
-        v1 = new Vector3f(1, 1, 1);
-        v2 = new Vector3f(1, 1, 1);
+    public void testCross() throws Exception {
+        v1 = new Vector3f(1, 2, 3);
+        v2 = new Vector3f(1, 5, 2);
 
-        angle = new Vector3f().angleBetween(v1, v2);
-        targetAngle = 0;
+        Vector3f cross = v1.cross(v2);
 
-        assertTrue(angle == targetAngle);
+        targetAngle = (float) Math.PI / 2;
 
-        v1 = new Vector3f(1, 0, 0);
-        v2 = new Vector3f(0, 1, 0);
+        angle = cross.angleTo(v1);
+        assertTrue(Math.abs(targetAngle - angle) < NORMALIZATION_TOLERANCE);
+        angle = cross.angleTo(v2);
+        assertTrue(Math.abs(targetAngle - angle) < NORMALIZATION_TOLERANCE);
+    }
 
-        angle = new Vector3f().angleBetween(v1, v2);
-        targetAngle = (float) Math.PI / 2; //  90 degrees
+    @Test
+    public void testCrossVectors() throws Exception {
+        v1 = new Vector3f(1, 2, 3);
+        v2 = new Vector3f(1, 5, 2);
 
-        assertTrue(angle == targetAngle);
+        Vector3f cross = new Vector3f().crossVectors(v1, v2);
 
-        v1 = new Vector3f(1, 0, 0);
-        v2 = new Vector3f(0, -1, 0);
+        targetAngle = (float) Math.PI / 2;
 
-        angle = new Vector3f().angleBetween(v1, v2);
-        targetAngle = (float) Math.PI / 2; // 90 degrees
-
-        assertTrue(angle == targetAngle);
+        angle = cross.angleTo(v1);
+        assertTrue(Math.abs(targetAngle - angle) < NORMALIZATION_TOLERANCE);
+        angle = cross.angleTo(v2);
+        assertTrue(Math.abs(targetAngle - angle) < NORMALIZATION_TOLERANCE);
     }
 
     @Test
@@ -225,7 +225,7 @@ public class Vector3fTest {
         v1 = new Vector3f(1, 2, 3);
 
         v2 = v1.negateCopy();
-        assertTrue(v1.x ==  1 && v1.y ==  2 && v1.z ==  3);
+        assertTrue(v1.x == 1 && v1.y == 2 && v1.z == 3);
         assertTrue(v2.x == -1 && v2.y == -2 && v2.z == -3);
     }
 
@@ -310,33 +310,6 @@ public class Vector3fTest {
     }
 
     @Test
-    public void testScaleTo() throws Exception {
-        /**
-         * Normalization causes some error.  This cannot be avoided, so we will check if it is close to the target
-         * length instead of strict equality.
-         *
-         * ScaleTo involves normalization, so this must be handled here as well.
-         */
-        float scaledTolerance;
-
-        v1 = new Vector3f(1, 1, 1);
-        targetLength = 5;
-        v1.scaleTo(targetLength);
-        length = v1.length();
-        scaledTolerance = NORMALIZATION_TOLERANCE * targetLength;
-
-        assertTrue(length < targetLength + scaledTolerance && length > targetLength - scaledTolerance);
-
-        v1 = new Vector3f(25, -10, 13);
-        targetLength = 2;
-        v1.scaleTo(targetLength);
-        length = v1.length();
-        scaledTolerance = NORMALIZATION_TOLERANCE * targetLength;
-
-        assertTrue(length < targetLength + scaledTolerance && length > targetLength - scaledTolerance);
-    }
-
-    @Test
     public void testScaleCopyTo() throws Exception {
         /**
          * Normalization causes some error.  This cannot be avoided, so we will check if it is close to the target
@@ -363,6 +336,33 @@ public class Vector3fTest {
 
         assertTrue(length < targetLength + scaledTolerance && length > targetLength - scaledTolerance);
         assertTrue(v1.x == 25 && v1.y == -10 && v1.z == 13);
+    }
+
+    @Test
+    public void testScaleTo() throws Exception {
+        /**
+         * Normalization causes some error.  This cannot be avoided, so we will check if it is close to the target
+         * length instead of strict equality.
+         *
+         * ScaleTo involves normalization, so this must be handled here as well.
+         */
+        float scaledTolerance;
+
+        v1 = new Vector3f(1, 1, 1);
+        targetLength = 5;
+        v1.scaleTo(targetLength);
+        length = v1.length();
+        scaledTolerance = NORMALIZATION_TOLERANCE * targetLength;
+
+        assertTrue(length < targetLength + scaledTolerance && length > targetLength - scaledTolerance);
+
+        v1 = new Vector3f(25, -10, 13);
+        targetLength = 2;
+        v1.scaleTo(targetLength);
+        length = v1.length();
+        scaledTolerance = NORMALIZATION_TOLERANCE * targetLength;
+
+        assertTrue(length < targetLength + scaledTolerance && length > targetLength - scaledTolerance);
     }
 
     @Test

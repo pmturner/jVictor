@@ -8,11 +8,11 @@ public class Matrix3f implements Matrixf<Matrix3f> {
     public float m10, m11, m12;
     public float m20, m21, m22;
 
-    public Matrix3f () {
+    public Matrix3f() {
         m00 = m11 = m22 = 1;
     }
 
-    public Matrix3f (Matrix3f m) {
+    public Matrix3f(Matrix3f m) {
         this.m00 = m.m00;
         this.m01 = m.m01;
         this.m02 = m.m02;

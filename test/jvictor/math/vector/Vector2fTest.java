@@ -58,33 +58,6 @@ public class Vector2fTest {
     }
 
     @Test
-    public void testAngleTo() throws Exception {
-        v1 = new Vector2f(1, 1);
-        v2 = new Vector2f(1, 1);
-
-        angle = v1.angleTo(v2);
-        targetAngle = 0;
-
-        assertTrue(angle == targetAngle);
-
-        v1 = new Vector2f(1, 0);
-        v2 = new Vector2f(0, 1);
-
-        angle = v1.angleTo(v2);
-        targetAngle = (float) Math.PI / 2; //  90 degrees
-
-        assertTrue(angle == targetAngle);
-
-        v1 = new Vector2f(1, 0);
-        v2 = new Vector2f(0, -1);
-
-        angle = v1.angleTo(v2);
-        targetAngle = (float) -Math.PI / 2; // -90 degrees
-
-        assertTrue(angle == targetAngle);
-    }
-
-    @Test
     public void testAngleBetween() throws Exception {
         v1 = new Vector2f(1, 1);
         v2 = new Vector2f(1, 1);
@@ -106,6 +79,33 @@ public class Vector2fTest {
         v2 = new Vector2f(0, -1);
 
         angle = new Vector2f().angleBetween(v1, v2);
+        targetAngle = (float) -Math.PI / 2; // -90 degrees
+
+        assertTrue(angle == targetAngle);
+    }
+
+    @Test
+    public void testAngleTo() throws Exception {
+        v1 = new Vector2f(1, 1);
+        v2 = new Vector2f(1, 1);
+
+        angle = v1.angleTo(v2);
+        targetAngle = 0;
+
+        assertTrue(angle == targetAngle);
+
+        v1 = new Vector2f(1, 0);
+        v2 = new Vector2f(0, 1);
+
+        angle = v1.angleTo(v2);
+        targetAngle = (float) Math.PI / 2; //  90 degrees
+
+        assertTrue(angle == targetAngle);
+
+        v1 = new Vector2f(1, 0);
+        v2 = new Vector2f(0, -1);
+
+        angle = v1.angleTo(v2);
         targetAngle = (float) -Math.PI / 2; // -90 degrees
 
         assertTrue(angle == targetAngle);
@@ -185,7 +185,7 @@ public class Vector2fTest {
 
     @Test
     public void testNegate() throws Exception {
-        v1 = new Vector2f(1,-2);
+        v1 = new Vector2f(1, -2);
 
         v1.negate();
 
@@ -195,7 +195,7 @@ public class Vector2fTest {
 
     @Test
     public void testNegateCopy() throws Exception {
-        v1 = new Vector2f(1,-2);
+        v1 = new Vector2f(1, -2);
 
         v2 = v1.negateCopy();
 
@@ -286,33 +286,6 @@ public class Vector2fTest {
     }
 
     @Test
-    public void testScaleTo() throws Exception {
-        /**
-         * Normalization causes some error.  This cannot be avoided, so we will check if it is close to the target
-         * length instead of strict equality.
-         *
-         * ScaleTo involves normalization, so this must be handled here as well.
-         */
-        float scaledTolerance;
-
-        v1 = new Vector2f(1, 1);
-        targetLength = 5;
-        v1.scaleTo(targetLength);
-        length = v1.length();
-        scaledTolerance = NORMALIZATION_TOLERANCE * targetLength;
-
-        assertTrue(length < targetLength + scaledTolerance && length > targetLength - scaledTolerance);
-
-        v1 = new Vector2f(25, -10);
-        targetLength = 2;
-        v1.scaleTo(targetLength);
-        length = v1.length();
-        scaledTolerance = NORMALIZATION_TOLERANCE * targetLength;
-
-        assertTrue(length < targetLength + scaledTolerance && length > targetLength - scaledTolerance);
-    }
-
-    @Test
     public void testScaleCopyTo() throws Exception {
         /**
          * Normalization causes some error.  This cannot be avoided, so we will check if it is close to the target
@@ -339,6 +312,33 @@ public class Vector2fTest {
 
         assertTrue(length < targetLength + scaledTolerance && length > targetLength - scaledTolerance);
         assertTrue(v1.x == 25 && v1.y == -10);
+    }
+
+    @Test
+    public void testScaleTo() throws Exception {
+        /**
+         * Normalization causes some error.  This cannot be avoided, so we will check if it is close to the target
+         * length instead of strict equality.
+         *
+         * ScaleTo involves normalization, so this must be handled here as well.
+         */
+        float scaledTolerance;
+
+        v1 = new Vector2f(1, 1);
+        targetLength = 5;
+        v1.scaleTo(targetLength);
+        length = v1.length();
+        scaledTolerance = NORMALIZATION_TOLERANCE * targetLength;
+
+        assertTrue(length < targetLength + scaledTolerance && length > targetLength - scaledTolerance);
+
+        v1 = new Vector2f(25, -10);
+        targetLength = 2;
+        v1.scaleTo(targetLength);
+        length = v1.length();
+        scaledTolerance = NORMALIZATION_TOLERANCE * targetLength;
+
+        assertTrue(length < targetLength + scaledTolerance && length > targetLength - scaledTolerance);
     }
 
     @Test

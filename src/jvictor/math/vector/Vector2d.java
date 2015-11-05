@@ -7,15 +7,15 @@ public class Vector2d implements Vectord<Vector2d> {
     public double x;
     public double y;
 
-    public Vector2d () {
+    public Vector2d() {
         this(0, 0);
     }
 
-    public Vector2d (Vector2d v) {
+    public Vector2d(Vector2d v) {
         this(v.x, v.y);
     }
 
-    public Vector2d (double x, double y) {
+    public Vector2d(double x, double y) {
         this.x = x;
         this.y = y;
     }
@@ -31,12 +31,12 @@ public class Vector2d implements Vectord<Vector2d> {
     }
 
     @Override
-    public double angleTo(Vector2d v) {
+    public double angleBetween(Vector2d v1, Vector2d v2) {
         return 0;
     }
 
     @Override
-    public double angleBetween(Vector2d v1, Vector2d v2) {
+    public double angleTo(Vector2d v) {
         return 0;
     }
 
@@ -91,12 +91,12 @@ public class Vector2d implements Vectord<Vector2d> {
     }
 
     @Override
-    public Vector2d scaleTo(double l) {
+    public Vector2d scaleCopyTo(double l) {
         return null;
     }
 
     @Override
-    public Vector2d scaleCopyTo(double l) {
+    public Vector2d scaleTo(double l) {
         return null;
     }
 

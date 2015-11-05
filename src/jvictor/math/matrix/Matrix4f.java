@@ -9,11 +9,11 @@ public class Matrix4f implements Matrixf<Matrix4f> {
     public float m20, m21, m22, m23;
     public float m30, m31, m32, m33;
 
-    public Matrix4f () {
+    public Matrix4f() {
         m00 = m11 = m22 = m33 = 1;
     }
 
-    public Matrix4f (Matrix4f m) {
+    public Matrix4f(Matrix4f m) {
         this.m00 = m.m00;
         this.m01 = m.m01;
         this.m02 = m.m02;
@@ -35,7 +35,7 @@ public class Matrix4f implements Matrixf<Matrix4f> {
         this.m33 = m.m33;
     }
 
-    public Matrix4f (Matrix3f m) {
+    public Matrix4f(Matrix3f m) {
         this.m00 = m.m00;
         this.m01 = m.m01;
         this.m02 = m.m02;

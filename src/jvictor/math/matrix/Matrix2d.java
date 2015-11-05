@@ -9,9 +9,10 @@ public class Matrix2d implements Matrixd<Matrix2d> {
     public double m10 = 0;
     public double m11 = 1;
 
-    public Matrix2d () {}
+    public Matrix2d() {
+    }
 
-    public Matrix2d (Matrix2f src) {
+    public Matrix2d(Matrix2f src) {
         this.m00 = src.m00;
         this.m01 = src.m01;
         this.m10 = src.m10;

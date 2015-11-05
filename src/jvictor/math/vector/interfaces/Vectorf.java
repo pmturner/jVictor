@@ -2,14 +2,6 @@ package jvictor.math.vector.interfaces;
 
 public interface Vectorf<VecType> extends Vector<VecType> {
     /**
-     * Calculate and return the angle (in Radians) between <code>this</code> vector and <code>v</code>.
-     *
-     * @param v the vector to compare to <code>this</code> vector when calculating the angle.
-     * @return the angle between <code>this</code> vector and <code>v</code>.
-     */
-    float angleTo(VecType v);
-
-    /**
      * Calculate and return the angle (in Radians) between the vectors <code>v1</code> and <code>v2</code>.
      *
      * @param v1 the first vector in the angle calculation.
@@ -17,6 +9,14 @@ public interface Vectorf<VecType> extends Vector<VecType> {
      * @return the angle between the vectors <code>v1</code> and <code>v2</code>.
      */
     float angleBetween(VecType v1, VecType v2);
+
+    /**
+     * Calculate and return the angle (in Radians) between <code>this</code> vector and <code>v</code>.
+     *
+     * @param v the vector to compare to <code>this</code> vector when calculating the angle.
+     * @return the angle between <code>this</code> vector and <code>v</code>.
+     */
+    float angleTo(VecType v);
 
     /**
      * Calculate and return the dot product of <code>this</code> vector and <code>v</code>.
@@ -66,18 +66,18 @@ public interface Vectorf<VecType> extends Vector<VecType> {
     VecType scaleCopy(float s);
 
     /**
-     * Set <code>this</code> vector's length to <code>l</code>.
-     *
-     * @param length the final length of <code>this</code> vector.
-     * @return <code>this</code> vector.
-     */
-    VecType scaleTo(float length);
-
-    /**
      * Set the length of a copy of <code>this</code> vector to <code>l</code>.
      *
      * @param length the final length of the copied vector.
      * @return a scaled copy of <code>this</code> vector.
      */
     VecType scaleCopyTo(float length);
+
+    /**
+     * Set <code>this</code> vector's length to <code>l</code>.
+     *
+     * @param length the final length of <code>this</code> vector.
+     * @return <code>this</code> vector.
+     */
+    VecType scaleTo(float length);
 }

@@ -7,11 +7,11 @@ public class Matrix2f implements Matrixf<Matrix2f> {
     public float m00, m01;
     public float m10, m11;
 
-    public Matrix2f () {
+    public Matrix2f() {
         m00 = m11 = 1;
     }
 
-    public Matrix2f (Matrix2f m) {
+    public Matrix2f(Matrix2f m) {
         this.m00 = m.m00;
         this.m01 = m.m01;
 
