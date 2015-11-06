@@ -1,21 +1,21 @@
 package jvictor.math.matrix;
 
-import jvictor.math.vector.Vector2f;
-import jvictor.math.vector.Vector3f;
-import jvictor.math.vector.Vector4f;
+import jvictor.math.vector.Vector2d;
+import jvictor.math.vector.Vector3d;
+import jvictor.math.vector.Vector4d;
 
-public class Matrix4f implements jvictor.math.matrix.interfaces.Matrix4f<Matrix4f, Vector4f> {
+public class Matrix4d implements jvictor.math.matrix.interfaces.Matrix4d<Matrix4d, Vector4d> {
 
-    public float m00, m01, m02, m03;
-    public float m10, m11, m12, m13;
-    public float m20, m21, m22, m23;
-    public float m30, m31, m32, m33;
+    public double m00, m01, m02, m03;
+    public double m10, m11, m12, m13;
+    public double m20, m21, m22, m23;
+    public double m30, m31, m32, m33;
 
-    public Matrix4f() {
+    public Matrix4d() {
         m00 = m11 = m22 = m33 = 1;
     }
 
-    public Matrix4f(Matrix4f m) {
+    public Matrix4d(Matrix4d m) {
         this.m00 = m.m00;
         this.m01 = m.m01;
         this.m02 = m.m02;
@@ -37,7 +37,7 @@ public class Matrix4f implements jvictor.math.matrix.interfaces.Matrix4f<Matrix4
         this.m33 = m.m33;
     }
 
-    public Matrix4f(Matrix3f m) {
+    public Matrix4d(Matrix3d m) {
         this.m00 = m.m00;
         this.m01 = m.m01;
         this.m02 = m.m02;
@@ -60,117 +60,117 @@ public class Matrix4f implements jvictor.math.matrix.interfaces.Matrix4f<Matrix4
     }
 
     @Override
-    public Matrix4f add(Matrix4f m) {
+    public Matrix4d add(Matrix4d m) {
         return null;
     }
 
     @Override
-    public Matrix4f addMatrices(Matrix4f m1, Matrix4f m2) {
+    public Matrix4d addMatrices(Matrix4d m1, Matrix4d m2) {
         return null;
     }
 
     @Override
-    public float determinant() {
+    public double determinant() {
         return 0;
     }
 
     @Override
-    public Matrix4f invert() {
+    public Matrix4d invert() {
         return null;
     }
 
     @Override
-    public Matrix4f invertCopy() {
+    public Matrix4d invertCopy() {
         return null;
     }
 
     @Override
-    public Matrix4f mul(Matrix4f m) {
+    public Matrix4d mul(Matrix4d m) {
         return null;
     }
 
     @Override
-    public Matrix4f mulMatrices(Matrix4f m1, Matrix4f m2) {
+    public Matrix4d mulMatrices(Matrix4d m1, Matrix4d m2) {
         return null;
     }
 
     @Override
-    public Matrix4f negate() {
+    public Matrix4d negate() {
         return null;
     }
 
     @Override
-    public Matrix4f negateCopy() {
+    public Matrix4d negateCopy() {
         return null;
     }
 
     @Override
-    public Matrix4f rotate(float angle, Vector3f axis) {
+    public Matrix4d rotate(double angle, Vector3d axis) {
         return null;
     }
 
     @Override
-    public Matrix4f rotateCopy(float angle, Vector3f axis) {
+    public Matrix4d rotateCopy(double angle, Vector3d axis) {
         return null;
     }
 
     @Override
-    public Matrix4f translateBy(Vector2f v) {
+    public Matrix4d translateBy(Vector2d v) {
         return null;
     }
 
     @Override
-    public Matrix4f translateBy(Vector3f v) {
+    public Matrix4d translateBy(Vector3d v) {
         return null;
     }
 
     @Override
-    public Matrix4f translateCopyBy(Vector2f v) {
+    public Matrix4d translateCopyBy(Vector2d v) {
         return null;
     }
 
     @Override
-    public Matrix4f translateCopyBy(Vector3f v) {
+    public Matrix4d translateCopyBy(Vector3d v) {
         return null;
     }
 
     @Override
-    public Matrix4f setIdentity() {
+    public Matrix4d setIdentity() {
         return null;
     }
 
     @Override
-    public Matrix4f setZero() {
+    public Matrix4d setZero() {
         return null;
     }
 
     @Override
-    public Matrix4f sub(Matrix4f m) {
+    public Matrix4d sub(Matrix4d m) {
         return null;
     }
 
     @Override
-    public Matrix4f subMatrices(Matrix4f m1, Matrix4f m2) {
+    public Matrix4d subMatrices(Matrix4d m1, Matrix4d m2) {
         return null;
     }
 
     @Override
-    public Vector4f transformVector(Vector4f v) {
+    public Vector4d transformVector(Vector4d v) {
         return null;
     }
 
     @Override
-    public Vector4f transformVectorCopy(Vector4f v) {
+    public Vector4d transformVectorCopy(Vector4d v) {
         return null;
     }
 
     @Override
-    public Matrix4f transpose() {
+    public Matrix4d transpose() {
         return null;
     }
 
     @Override
-    public Matrix4f transposeCopy() {
+    public Matrix4d transposeCopy() {
         return null;
     }
 }

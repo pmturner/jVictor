@@ -1,19 +1,19 @@
 package jvictor.math.matrix;
 
-import jvictor.math.matrix.interfaces.Matrixf;
-import jvictor.math.vector.Vector3f;
+import jvictor.math.matrix.interfaces.Matrixd;
+import jvictor.math.vector.Vector3d;
 
-public class Matrix3f implements Matrixf<Matrix3f, Vector3f> {
+public class Matrix3d implements Matrixd<Matrix3d, Vector3d> {
 
-    public float m00, m01, m02;
-    public float m10, m11, m12;
-    public float m20, m21, m22;
+    public double m00, m01, m02;
+    public double m10, m11, m12;
+    public double m20, m21, m22;
 
-    public Matrix3f() {
+    public Matrix3d() {
         m00 = m11 = m22 = 1;
     }
 
-    public Matrix3f(Matrix3f m) {
+    public Matrix3d(Matrix3d m) {
         this.m00 = m.m00;
         this.m01 = m.m01;
         this.m02 = m.m02;
@@ -28,87 +28,87 @@ public class Matrix3f implements Matrixf<Matrix3f, Vector3f> {
     }
 
     @Override
-    public Matrix3f add(Matrix3f m) {
+    public Matrix3d add(Matrix3d m) {
         return null;
     }
 
     @Override
-    public Matrix3f addMatrices(Matrix3f m1, Matrix3f m2) {
+    public Matrix3d addMatrices(Matrix3d m1, Matrix3d m2) {
         return null;
     }
 
     @Override
-    public float determinant() {
+    public double determinant() {
         return 0;
     }
 
     @Override
-    public Matrix3f invert() {
+    public Matrix3d invert() {
         return null;
     }
 
     @Override
-    public Matrix3f invertCopy() {
+    public Matrix3d invertCopy() {
         return null;
     }
 
     @Override
-    public Matrix3f mul(Matrix3f m) {
+    public Matrix3d mul(Matrix3d m) {
         return null;
     }
 
     @Override
-    public Matrix3f mulMatrices(Matrix3f m1, Matrix3f m2) {
+    public Matrix3d mulMatrices(Matrix3d m1, Matrix3d m2) {
         return null;
     }
 
     @Override
-    public Matrix3f negate() {
+    public Matrix3d negate() {
         return null;
     }
 
     @Override
-    public Matrix3f negateCopy() {
+    public Matrix3d negateCopy() {
         return null;
     }
 
     @Override
-    public Matrix3f setIdentity() {
+    public Matrix3d setIdentity() {
         return null;
     }
 
     @Override
-    public Matrix3f setZero() {
+    public Matrix3d setZero() {
         return null;
     }
 
     @Override
-    public Matrix3f sub(Matrix3f m) {
+    public Matrix3d sub(Matrix3d m) {
         return null;
     }
 
     @Override
-    public Matrix3f subMatrices(Matrix3f m1, Matrix3f m2) {
+    public Matrix3d subMatrices(Matrix3d m1, Matrix3d m2) {
         return null;
     }
 
     @Override
-    public Vector3f transformVector(Vector3f v) {
+    public Vector3d transformVector(Vector3d v) {
         return null;
     }
 
     @Override
-    public Vector3f transformVectorCopy(Vector3f v) {
+    public Vector3d transformVectorCopy(Vector3d v) {
         return null;
     }
 
     @Override
-    public Matrix3f transpose() {
+    public Matrix3d transpose() {
         return null;
     }
 
     @Override
-    public Matrix3f transposeCopy() {
+    public Matrix3d transposeCopy() {
         return null;
     }
 }
