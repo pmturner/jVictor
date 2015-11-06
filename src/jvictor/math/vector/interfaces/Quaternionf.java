@@ -2,7 +2,6 @@ package jvictor.math.vector.interfaces;
 
 import jvictor.math.matrix.Matrix3f;
 import jvictor.math.matrix.Matrix4f;
-import jvictor.math.vector.*;
 
 public interface Quaternionf<QuaternionType> extends Quaternion<QuaternionType> {
 
