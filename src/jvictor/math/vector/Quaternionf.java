@@ -62,7 +62,7 @@ public class Quaternionf implements jvictor.math.vector.interfaces.Quaternionf<Q
 
         Vector3f axis = new Vector3f();
 
-        if (div < 0.001f) { //TODO: might need a better value for
+        if (div < 0.001f) { //TODO: might need a better value for this
             axis.x = x;
             axis.y = y;
             axis.z = z;
