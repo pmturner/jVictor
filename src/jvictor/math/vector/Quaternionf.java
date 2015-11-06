@@ -5,12 +5,12 @@ import jvictor.math.matrix.Matrix4f;
 
 public class Quaternionf implements jvictor.math.vector.interfaces.Quaternionf<Quaternionf> {
 
-    private float w;
-    private float x;
-    private float y;
-    private float z;
+    public float w;
+    public float x;
+    public float y;
+    public float z;
 
-    private Quaternionf(float w, float x, float y, float z) {
+    public Quaternionf(float w, float x, float y, float z) {
         this.w = w;
         this.x = x;
         this.y = y;
@@ -76,6 +76,16 @@ public class Quaternionf implements jvictor.math.vector.interfaces.Quaternionf<Q
     }
 
     @Override
+    public float length() {
+        return (float) Math.sqrt(lengthSquared());
+    }
+
+    @Override
+    public float lengthSquared() {
+        return w * w + x * x + y * y + z * z;
+    }
+
+    @Override
     public Quaternionf mul(Quaternionf q2) {
         Quaternionf q1 = new Quaternionf(this);
 
@@ -133,15 +143,15 @@ public class Quaternionf implements jvictor.math.vector.interfaces.Quaternionf<Q
 
     @Override
     public Quaternionf setFromAxisAngle(Vector3f axis, float angle) {
-        axis.normalize();
+        Vector3f thisAxis = axis.normalizeCopy();
 
         float halfAngle = angle * 0.5f;
         float sinHalfAngle = (float) Math.sin(halfAngle);
 
         w = (float) Math.cos(halfAngle);
-        x = sinHalfAngle * axis.x;
-        y = sinHalfAngle * axis.y;
-        z = sinHalfAngle * axis.z;
+        x = sinHalfAngle * thisAxis.x;
+        y = sinHalfAngle * thisAxis.y;
+        z = sinHalfAngle * thisAxis.z;
         return this;
     }
 
@@ -218,19 +228,19 @@ public class Quaternionf implements jvictor.math.vector.interfaces.Quaternionf<Q
 
         Matrix4f rot = new Matrix4f();
 
-        rot.m00 = 1 - 2 * ySq - 2 * zSq;
-        rot.m01 = 2 * xy - 2 * zw;
-        rot.m02 = 2 * xz + 2 * yw;
+        rot.m00 = 1 - 2 * (ySq + zSq);
+        rot.m01 =     2 * (xy  -  zw);
+        rot.m02 =     2 * (xz  +  yw);
         rot.m03 = 0;
 
-        rot.m10 = 2 * xy + 2 * zw;
-        rot.m11 = 1 - 2 * xSq - 2 * zSq;
-        rot.m12 = 2 * yz + 2 * xw;
+        rot.m10 =     2 * (xy  +  zw);
+        rot.m11 = 1 - 2 * (xSq + zSq);
+        rot.m12 =     2 * (yz  -  xw);
         rot.m13 = 0;
 
-        rot.m20 = 2 * xz - 2 * yw;
-        rot.m21 = 2 * yz - 2 * xw;
-        rot.m22 = 1 - 2 * xSq - 2 * ySq;
+        rot.m20 =     2 * (xz  -  yw);
+        rot.m21 =     2 * (yz  +  xw);
+        rot.m22 = 1 - 2 * (xSq + ySq);
         rot.m23 = 0;
         /*
             TODO: this part shouldn't be necessary because this is the same as the identity matrix, but we need to make

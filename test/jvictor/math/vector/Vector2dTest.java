@@ -188,7 +188,7 @@ public class Vector2dTest {
         length = v1.length();
         targetLength = 1;
 
-        assertTrue(Math.abs(targetLength - length) < NORMALIZATION_TOLERANCE);
+        assertTrue(similar(targetLength, length));
 
         v1 = new Vector2d(25, -10);
 
@@ -196,7 +196,7 @@ public class Vector2dTest {
         length = v1.length();
         targetLength = 1;
 
-        assertTrue(Math.abs(targetLength - length) < NORMALIZATION_TOLERANCE);
+        assertTrue(similar(targetLength, length));
     }
 
     @Test
@@ -211,7 +211,7 @@ public class Vector2dTest {
         length = v2.length();
         targetLength = 1;
 
-        assertTrue(Math.abs(targetLength - length) < NORMALIZATION_TOLERANCE);
+        assertTrue(similar(targetLength, length));
         assertTrue(v1.x == 1 && v1.y == 1);
 
         v1 = new Vector2d(25, -10);
@@ -220,7 +220,7 @@ public class Vector2dTest {
         length = v2.length();
         targetLength = 1;
 
-        assertTrue(Math.abs(targetLength - length) < NORMALIZATION_TOLERANCE);
+        assertTrue(similar(targetLength, length));
         assertTrue(v1.x == 25 && v1.y == -10);
     }
 
@@ -259,7 +259,7 @@ public class Vector2dTest {
         length = v2.length();
         scaledTolerance = NORMALIZATION_TOLERANCE * targetLength;
 
-        assertTrue(Math.abs(targetLength - length) < scaledTolerance);
+        assertTrue(similar(targetLength, length, scaledTolerance));
         assertTrue(v1.x == 1 && v1.y == 1);
 
         v1 = new Vector2d(25, -10);
@@ -268,7 +268,7 @@ public class Vector2dTest {
         length = v2.length();
         scaledTolerance = NORMALIZATION_TOLERANCE * targetLength;
 
-        assertTrue(Math.abs(targetLength - length) < scaledTolerance);
+        assertTrue(similar(targetLength, length, scaledTolerance));
         assertTrue(v1.x == 25 && v1.y == -10);
     }
 
@@ -288,7 +288,7 @@ public class Vector2dTest {
         length = v1.length();
         scaledTolerance = NORMALIZATION_TOLERANCE * targetLength;
 
-        assertTrue(Math.abs(targetLength - length) < scaledTolerance);
+        assertTrue(similar(targetLength, length, scaledTolerance));
 
         v1 = new Vector2d(25, -10);
         targetLength = 2;
@@ -296,7 +296,7 @@ public class Vector2dTest {
         length = v1.length();
         scaledTolerance = NORMALIZATION_TOLERANCE * targetLength;
 
-        assertTrue(Math.abs(targetLength - length) < scaledTolerance);
+        assertTrue(similar(targetLength, length, scaledTolerance));
     }
 
     @Test
@@ -320,5 +320,13 @@ public class Vector2dTest {
         assertTrue(diff.x == 0 && diff.y == 1);
         assertTrue(v1.x == 1 && v1.y == 2);
         assertTrue(v2.x == 1 && v2.y == 1);
+    }
+
+    private boolean similar(double a, double b) {
+        return Math.abs(a - b) < NORMALIZATION_TOLERANCE;
+    }
+
+    private boolean similar(double a, double b, double tolerance) {
+        return Math.abs(a - b) < tolerance;
     }
 }

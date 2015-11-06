@@ -173,4 +173,14 @@ public class Matrix4f implements jvictor.math.matrix.interfaces.Matrix4f<Matrix4
     public Matrix4f transposeCopy() {
         return null;
     }
+
+    @Override
+    public String toString() {
+        String s = "";
+        s += "[" + m00 + ", " + m01 + ", " + m02 + ", " + m03 + "]\n";
+        s += "[" + m10 + ", " + m11 + ", " + m12 + ", " + m13 + "]\n";
+        s += "[" + m20 + ", " + m21 + ", " + m22 + ", " + m23 + "]\n";
+        s += "[" + m30 + ", " + m31 + ", " + m32 + ", " + m33 + "]";
+        return s;
+    }
 }

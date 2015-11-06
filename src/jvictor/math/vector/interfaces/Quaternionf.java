@@ -17,6 +17,10 @@ public interface Quaternionf<QuaternionType> extends Quaternion<QuaternionType> 
 
     jvictor.math.vector.Vector3f getAxis();
 
+    float length();
+
+    float lengthSquared();
+
     QuaternionType setFromAxisAngle(jvictor.math.vector.Vector3f axis, float angle);
 
     QuaternionType setFromMatrix(Matrix3f m); //defined here because they are float matrices

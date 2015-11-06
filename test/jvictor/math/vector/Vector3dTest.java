@@ -110,9 +110,9 @@ public class Vector3dTest {
         targetAngle = Math.PI / 2;
 
         angle = cross.angleTo(v1);
-        assertTrue(Math.abs(targetAngle - angle) < NORMALIZATION_TOLERANCE);
+        assertTrue(similar(targetAngle, angle));
         angle = cross.angleTo(v2);
-        assertTrue(Math.abs(targetAngle - angle) < NORMALIZATION_TOLERANCE);
+        assertTrue(similar(targetAngle, angle));
     }
 
     @Test
@@ -125,9 +125,9 @@ public class Vector3dTest {
         targetAngle = Math.PI / 2;
 
         angle = cross.angleTo(v1);
-        assertTrue(Math.abs(targetAngle - angle) < NORMALIZATION_TOLERANCE);
+        assertTrue(similar(targetAngle, angle));
         angle = cross.angleTo(v2);
-        assertTrue(Math.abs(targetAngle - angle) < NORMALIZATION_TOLERANCE);
+        assertTrue(similar(targetAngle, angle));
     }
 
     @Test
@@ -233,7 +233,7 @@ public class Vector3dTest {
         length = v1.length();
         targetLength = 1;
 
-        assertTrue(Math.abs(targetLength - length) < NORMALIZATION_TOLERANCE);
+        assertTrue(similar(targetLength, length));
 
         v1 = new Vector3d(25, -10, 13);
 
@@ -241,7 +241,7 @@ public class Vector3dTest {
         length = v1.length();
         targetLength = 1;
 
-        assertTrue(Math.abs(targetLength - length) < NORMALIZATION_TOLERANCE);
+        assertTrue(similar(targetLength, length));
     }
 
     @Test
@@ -256,7 +256,7 @@ public class Vector3dTest {
         length = v2.length();
         targetLength = 1;
 
-        assertTrue(Math.abs(targetLength - length) < NORMALIZATION_TOLERANCE);
+        assertTrue(similar(targetLength, length));
         assertTrue(v1.x == 1 && v1.y == 1 && v1.z == 1);
 
         v1 = new Vector3d(25, -10, 13);
@@ -265,7 +265,7 @@ public class Vector3dTest {
         length = v2.length();
         targetLength = 1;
 
-        assertTrue(Math.abs(targetLength - length) < NORMALIZATION_TOLERANCE);
+        assertTrue(similar(targetLength, length));
         assertTrue(v1.x == 25 && v1.y == -10 && v1.z == 13);
     }
 
@@ -304,7 +304,7 @@ public class Vector3dTest {
         length = v2.length();
         scaledTolerance = NORMALIZATION_TOLERANCE * targetLength;
 
-        assertTrue(Math.abs(targetLength - length) < scaledTolerance);
+        assertTrue(similar(targetLength, length, scaledTolerance));
         assertTrue(v1.x == 1 && v1.y == 1 && v1.z == 1);
 
         v1 = new Vector3d(25, -10, 13);
@@ -313,7 +313,7 @@ public class Vector3dTest {
         length = v2.length();
         scaledTolerance = NORMALIZATION_TOLERANCE * targetLength;
 
-        assertTrue(Math.abs(targetLength - length) < scaledTolerance);
+        assertTrue(similar(targetLength, length, scaledTolerance));
         assertTrue(v1.x == 25 && v1.y == -10 && v1.z == 13);
     }
 
@@ -333,7 +333,7 @@ public class Vector3dTest {
         length = v1.length();
         scaledTolerance = NORMALIZATION_TOLERANCE * targetLength;
 
-        assertTrue(Math.abs(targetLength - length) < scaledTolerance);
+        assertTrue(similar(targetLength, length, scaledTolerance));
 
         v1 = new Vector3d(25, -10, 13);
         targetLength = 2;
@@ -341,7 +341,7 @@ public class Vector3dTest {
         length = v1.length();
         scaledTolerance = NORMALIZATION_TOLERANCE * targetLength;
 
-        assertTrue(Math.abs(targetLength - length) < scaledTolerance);
+        assertTrue(similar(targetLength, length, scaledTolerance));
     }
 
     @Test
@@ -365,5 +365,13 @@ public class Vector3dTest {
         assertTrue(diff.x == 1 && diff.y == 1 && diff.z == 1);
         assertTrue(v1.x == 1 && v1.y == 2 && v1.z == 3);
         assertTrue(v2.x == 0 && v2.y == 1 && v2.z == 2);
+    }
+
+    private boolean similar(double a, double b) {
+        return Math.abs(a - b) < NORMALIZATION_TOLERANCE;
+    }
+
+    private boolean similar(double a, double b, double tolerance) {
+        return Math.abs(a - b) < tolerance;
     }
 }

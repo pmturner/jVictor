@@ -201,7 +201,7 @@ public class Vector4fTest {
         length = v1.length();
         targetLength = 1;
 
-        assertTrue(Math.abs(targetLength - length) < NORMALIZATION_TOLERANCE);
+        assertTrue(similar(targetLength, length));
 
         v1 = new Vector4f(25, -10, 13, 1);
 
@@ -209,7 +209,7 @@ public class Vector4fTest {
         length = v1.length();
         targetLength = 1;
 
-        assertTrue(Math.abs(targetLength - length) < NORMALIZATION_TOLERANCE);
+        assertTrue(similar(targetLength, length));
     }
 
     @Test
@@ -224,7 +224,7 @@ public class Vector4fTest {
         length = v2.length();
         targetLength = 1;
 
-        assertTrue(Math.abs(targetLength - length) < NORMALIZATION_TOLERANCE);
+        assertTrue(similar(targetLength, length));
         assertTrue(v1.x == 1 && v1.y == 1 && v1.z == 1 && v1.w == 1);
 
         v1 = new Vector4f(25, -10, 13, 1);
@@ -233,7 +233,7 @@ public class Vector4fTest {
         length = v2.length();
         targetLength = 1;
 
-        assertTrue(Math.abs(targetLength - length) < NORMALIZATION_TOLERANCE);
+        assertTrue(similar(targetLength, length));
         assertTrue(v1.x == 25 && v1.y == -10 && v1.z == 13 && v1.w == 1);
     }
 
@@ -285,7 +285,7 @@ public class Vector4fTest {
         length = v2.length();
         scaledTolerance = NORMALIZATION_TOLERANCE * targetLength;
 
-        assertTrue(Math.abs(targetLength - length) < scaledTolerance);
+        assertTrue(similar(targetLength, length, scaledTolerance));
         assertTrue(v1.x == 1 && v1.y == 1 && v1.z == 1 && v1.w == 1);
 
         v1 = new Vector4f(25, -10, 13, 1);
@@ -294,7 +294,7 @@ public class Vector4fTest {
         length = v2.length();
         scaledTolerance = NORMALIZATION_TOLERANCE * targetLength;
 
-        assertTrue(Math.abs(targetLength - length) < scaledTolerance);
+        assertTrue(similar(targetLength, length, scaledTolerance));
         assertTrue(v1.x == 25 && v1.y == -10 && v1.z == 13 && v1.w == 1);
     }
 
@@ -314,7 +314,7 @@ public class Vector4fTest {
         length = v1.length();
         scaledTolerance = NORMALIZATION_TOLERANCE * targetLength;
 
-        assertTrue(Math.abs(targetLength - length) < scaledTolerance);
+        assertTrue(similar(targetLength, length, scaledTolerance));
 
         v1 = new Vector4f(25, -10, 13, 1);
         targetLength = 2;
@@ -322,7 +322,7 @@ public class Vector4fTest {
         length = v1.length();
         scaledTolerance = NORMALIZATION_TOLERANCE * targetLength;
 
-        assertTrue(Math.abs(targetLength - length) < scaledTolerance);
+        assertTrue(similar(targetLength, length, scaledTolerance));
     }
 
     @Test
@@ -346,5 +346,13 @@ public class Vector4fTest {
         assertTrue(v1.x == -1 && v1.y == 1 && v1.z == 2 && v1.w == 2);
         assertTrue(v2.x == 1 && v2.y == 2 && v2.z == 5 && v2.w == 2);
         assertTrue(diff.x == -2 && diff.y == -1 && diff.z == -3 && diff.w == 0);
+    }
+
+    private boolean similar(float a, float b) {
+        return Math.abs(a - b) < NORMALIZATION_TOLERANCE;
+    }
+
+    private boolean similar(float a, float b, float tolerance) {
+        return Math.abs(a - b) < tolerance;
     }
 }
