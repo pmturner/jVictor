@@ -5,6 +5,8 @@ import jvictor.math.matrix.Matrix4f;
 
 public class Quaternionf implements jvictor.math.vector.interfaces.Quaternionf<Quaternionf> {
 
+    private static final float TOLERANCE = 0.000001f;
+
     public float w;
     public float x;
     public float y;
@@ -166,9 +168,9 @@ public class Quaternionf implements jvictor.math.vector.interfaces.Quaternionf<Q
         float tr = m.m00 + m.m11 + m.m22;
         float s;
 
-        if (tr > 0) {
+        if (tr > TOLERANCE) {
 
-            s = (float) Math.sqrt(tr + 1.0) * 2;
+            s = (float) (Math.sqrt(1.0 + tr) * 2.0);
             w = 0.25f * s;
             x = (m.m21 - m.m12) / s;
             y = (m.m02 - m.m20) / s;
@@ -176,7 +178,7 @@ public class Quaternionf implements jvictor.math.vector.interfaces.Quaternionf<Q
 
         } else if ((m.m00 > m.m11) && (m.m00 > m.m22)) {
 
-            s = (float) Math.sqrt(1.0 + m.m00 - m.m11 - m.m22) * 2;
+            s = (float) (Math.sqrt(1.0 + m.m00 - m.m11 - m.m22) * 2.0);
             w = (m.m21 - m.m12) / s;
             x = 0.25f * s;
             y = (m.m01 + m.m10) / s;
@@ -184,7 +186,7 @@ public class Quaternionf implements jvictor.math.vector.interfaces.Quaternionf<Q
 
         } else if ((m.m11 > m.m22)) {
 
-            s = (float) Math.sqrt(1.0 + m.m11 - m.m00 - m.m22) * 2;
+            s = (float) (Math.sqrt(1.0 + m.m11 - m.m00 - m.m22) * 2.0);
             w = (m.m02 - m.m20) / s;
             x = (m.m01 + m.m10) / s;
             y = 0.25f * s;
@@ -192,7 +194,7 @@ public class Quaternionf implements jvictor.math.vector.interfaces.Quaternionf<Q
 
         } else {
 
-            s = (float) Math.sqrt(1.0 + m.m22 - m.m00 - m.m11) * 2;
+            s = (float) (Math.sqrt(1.0 + m.m22 - m.m00 - m.m11) * 2.0);
             w = (m.m10 - m.m01) / s;
             x = (m.m02 + m.m20) / s;
             y = (m.m12 + m.m21) / s;

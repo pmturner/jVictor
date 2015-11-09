@@ -1,5 +1,6 @@
 package jvictor.math.vector;
 
+import jvictor.math.matrix.Matrix3f;
 import jvictor.math.matrix.Matrix4f;
 import org.junit.Test;
 
@@ -15,6 +16,8 @@ public class QuaternionfTest {
 
     Quaternionf q1;
     Quaternionf q2;
+    float angle;
+    float targetAngle;
     float dot;
     float targetDot;
     float length;
@@ -28,12 +31,22 @@ public class QuaternionfTest {
 
     @Test
     public void testAngleBetween() throws Exception {
-        assertTrue(false);
+        q1 = new Quaternionf().setFromAxisAngle(new Vector3f(1, 0, 0), (float) Math.PI / 2f);
+        q2 = new Quaternionf().setFromAxisAngle(new Vector3f(1, 0, 0), (float) Math.PI);
+        targetAngle = (float) Math.PI / 2f;
+        angle = new Quaternionf().angleBetween(q1, q2);
+
+        assertTrue(similar(angle, targetAngle));
     }
 
     @Test
     public void testAngleTo() throws Exception {
-        assertTrue(false);
+        q1 = new Quaternionf().setFromAxisAngle(new Vector3f(1, 0, 0), 0);
+        q2 = new Quaternionf().setFromAxisAngle(new Vector3f(1, 0, 0), (float) Math.PI / 2f);
+        targetAngle = (float) Math.PI / 2f;
+        angle = q1.angleTo(q2);
+
+        assertTrue(similar(angle, targetAngle));
     }
 
     @Test
@@ -135,12 +148,17 @@ public class QuaternionfTest {
 
     @Test
     public void testMul() throws Exception {
-        assertTrue(false);
+        /**
+         * Tests for mul() and mulQuaternions() are omitted here because this functionality is already tested in
+         * "testRotateBy" and similar tests; there are no straightforward ways to test multiplication by itself.
+         */
     }
 
     @Test
     public void testMulQuaternions() throws Exception {
-        assertTrue(false);
+        /**
+         * See "testMul".
+         */
     }
 
     @Test
@@ -213,7 +231,17 @@ public class QuaternionfTest {
 
     @Test
     public void testRotateBy() throws Exception {
-        assertTrue(false);
+        q1 = new Quaternionf();
+        q2 = new Quaternionf(q1);
+
+        Quaternionf rot = new Quaternionf();
+        rot.setFromAxisAngle(new Vector3f(1, 0, 0), (float)Math.PI / 2f);
+
+        q2.rotateBy(rot);
+        angle = q1.angleTo(q2);
+        targetAngle = (float) Math.PI / 2f;
+
+        assertTrue(similar(angle, targetAngle));
     }
 
     @Test
@@ -240,12 +268,86 @@ public class QuaternionfTest {
 
     @Test
     public void testSetFromMatrix3f() throws Exception {
-        assertTrue(false);
+
+        Matrix3f in;
+        Matrix4f out;
+        Matrix4f in4;
+
+        /**
+         * 90 degree rotation around x-axis:
+         * 1 0  0
+         * 0 0 -1
+         * 0 1  0
+         */
+        in = new Matrix3f();
+        in.m00 = 1; in.m01 = 0; in.m02 = 0;
+        in.m10 = 0; in.m11 = 0; in.m12 = -1;
+        in.m20 = 0; in.m21 = 1; in.m22 = 0;
+
+        q1 = new Quaternionf().setFromMatrix(in);
+        out = q1.toRotationMatrix();
+        in4 = new Matrix4f(in);
+
+        assertTrue(similar(in4, out));
+
+        /**
+         * 90 degree rotation around z-axis:
+         * 0 -1 0
+         * 1  0 0
+         * 0  0 1
+         */
+        in = new Matrix3f();
+        in.m00 = 0; in.m01 = -1; in.m02 = 0;
+        in.m10 = 1; in.m11 = 0;  in.m12 = 0;
+        in.m20 = 0; in.m21 = 0;  in.m22 = 1;
+
+        q1 = new Quaternionf().setFromMatrix(in);
+        out = q1.toRotationMatrix();
+        in4 = new Matrix4f(in);
+
+        assertTrue(similar(in4, out));
     }
 
     @Test
     public void testSetFromMatrix4f() throws Exception {
-        assertTrue(false);
+
+        Matrix4f in;
+        Matrix4f out;
+        /**
+         * 90 degree rotation around x-axis:
+         * 1 0  0 0
+         * 0 0 -1 0
+         * 0 1  0 0
+         * 0 0  0 1
+         */
+        in = new Matrix4f();
+        in.m00 = 1; in.m01 = 0; in.m02 = 0;  in.m03 = 0;
+        in.m10 = 0; in.m11 = 0; in.m12 = -1; in.m13 = 0;
+        in.m20 = 0; in.m21 = 1; in.m22 = 0;  in.m23 = 0;
+        in.m30 = 0; in.m31 = 0; in.m32 = 0;  in.m33 = 1;
+
+        q1 = new Quaternionf().setFromMatrix(in);
+        out = q1.toRotationMatrix();
+
+        assertTrue(similar(in, out));
+
+        /**
+         * 90 degree rotation around z-axis:
+         * 0 -1 0 0
+         * 1  0 0 0
+         * 0  0 1 0
+         * 0  0 0 1
+         */
+        in = new Matrix4f();
+        in.m00 = 0; in.m01 = -1; in.m02 = 0; in.m03 = 0;
+        in.m10 = 1; in.m11 = 0;  in.m12 = 0; in.m13 = 0;
+        in.m20 = 0; in.m21 = 0;  in.m22 = 1; in.m23 = 0;
+        in.m30 = 0; in.m31 = 0;  in.m32 = 0; in.m33 = 1;
+
+        q1 = new Quaternionf().setFromMatrix(in);
+        out = q1.toRotationMatrix();
+
+        assertTrue(similar(in, out));
     }
 
     @Test
@@ -336,6 +438,19 @@ public class QuaternionfTest {
 
     private boolean similar(float a, float b) {
         return Math.abs(a - b) < NORMALIZATION_TOLERANCE;
+    }
+
+    private boolean similar(Matrix3f a, Matrix3f b) {
+        return  similar(a.m00, b.m00) && similar(a.m01, b.m01) && similar(a.m02, b.m02) &&
+                similar(a.m10, b.m10) && similar(a.m11, b.m11) && similar(a.m12, b.m12) &&
+                similar(a.m20, b.m20) && similar(a.m21, b.m21) && similar(a.m22, b.m22);
+    }
+
+    private boolean similar(Matrix4f a, Matrix4f b) {
+        return  similar(a.m00, b.m00) && similar(a.m01, b.m01) && similar(a.m02, b.m02) && similar(a.m03, b.m03) &&
+                similar(a.m10, b.m10) && similar(a.m11, b.m11) && similar(a.m12, b.m12) && similar(a.m13, b.m13) &&
+                similar(a.m20, b.m20) && similar(a.m21, b.m21) && similar(a.m22, b.m22) && similar(a.m23, b.m23) &&
+                similar(a.m30, b.m30) && similar(a.m31, b.m31) && similar(a.m32, b.m32) && similar(a.m33, b.m33);
     }
 
     private boolean similar(float a, float b, float tolerance) {

@@ -111,4 +111,13 @@ public class Matrix3f implements Matrixf<Matrix3f, Vector3f> {
     public Matrix3f transposeCopy() {
         return null;
     }
+
+    @Override
+    public String toString() {
+        String s = "";
+        s += "[[" + m00 + ", " + m01 + ", " + m02 + "]\n";
+        s += " [" + m10 + ", " + m11 + ", " + m12 + "]\n";
+        s += " [" + m20 + ", " + m21 + ", " + m22 + "]]";
+        return s;
+    }
 }
