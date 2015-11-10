@@ -1,29 +1,14 @@
 package jvictor.math.vector;
 
-import org.junit.After;
-import org.junit.Before;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class Vector3fTest {
-
-    /**
-     * We need this for all functions that involve normalization because normalization introduces floating point errors
-     * into those calculations.
-     */
-    final float NORMALIZATION_TOLERANCE = 0.000001f;
+public class Vector3fTest extends VectorfTest {
 
     Vector3f v1;
     Vector3f v2;
-    float angle;
-    float targetAngle;
-    float dot;
-    float targetDot;
-    float length;
-    float targetLength;
-    float lengthSq;
-    float targetLengthSq;
 
     @Test
     public void testAdd() throws Exception {
@@ -221,10 +206,6 @@ public class Vector3fTest {
 
     @Test
     public void testNormalize() throws Exception {
-        /**
-         * Normalization causes some error.  This cannot be avoided, so we will check if it is close to the target
-         * length instead of strict equality.
-         */
         v1 = new Vector3f(1, 1, 1);
 
         v1.normalize();
@@ -244,10 +225,6 @@ public class Vector3fTest {
 
     @Test
     public void testNormalizeCopy() throws Exception {
-        /**
-         * Normalization causes some error.  This cannot be avoided, so we will check if it is close to the target
-         * length instead of strict equality.
-         */
         v1 = new Vector3f(1, 1, 1);
 
         v2 = v1.normalizeCopy();
@@ -301,19 +278,13 @@ public class Vector3fTest {
 
     @Test
     public void testScaleCopyTo() throws Exception {
-        /**
-         * Normalization causes some error.  This cannot be avoided, so we will check if it is close to the target
-         * length instead of strict equality.
-         *
-         * ScaleTo involves normalization, so this must be handled here as well.
-         */
         float scaledTolerance;
 
         v1 = new Vector3f(1, 1, 1);
         targetLength = 5;
         v2 = v1.scaleCopyTo(targetLength);
         length = v2.length();
-        scaledTolerance = NORMALIZATION_TOLERANCE * targetLength;
+        scaledTolerance = TOLERANCE * targetLength;
 
         assertTrue(similar(targetLength, length, scaledTolerance));
         assertTrue(v1.x == 1 && v1.y == 1 && v1.z == 1);
@@ -322,7 +293,7 @@ public class Vector3fTest {
         targetLength = 2;
         v2 = v1.scaleCopyTo(targetLength);
         length = v2.length();
-        scaledTolerance = NORMALIZATION_TOLERANCE * targetLength;
+        scaledTolerance = TOLERANCE * targetLength;
 
         assertTrue(similar(targetLength, length, scaledTolerance));
         assertTrue(v1.x == 25 && v1.y == -10 && v1.z == 13);
@@ -330,19 +301,13 @@ public class Vector3fTest {
 
     @Test
     public void testScaleTo() throws Exception {
-        /**
-         * Normalization causes some error.  This cannot be avoided, so we will check if it is close to the target
-         * length instead of strict equality.
-         *
-         * ScaleTo involves normalization, so this must be handled here as well.
-         */
         float scaledTolerance;
 
         v1 = new Vector3f(1, 1, 1);
         targetLength = 5;
         v1.scaleTo(targetLength);
         length = v1.length();
-        scaledTolerance = NORMALIZATION_TOLERANCE * targetLength;
+        scaledTolerance = TOLERANCE * targetLength;
 
         assertTrue(similar(targetLength, length, scaledTolerance));
 
@@ -350,7 +315,7 @@ public class Vector3fTest {
         targetLength = 2;
         v1.scaleTo(targetLength);
         length = v1.length();
-        scaledTolerance = NORMALIZATION_TOLERANCE * targetLength;
+        scaledTolerance = TOLERANCE * targetLength;
 
         assertTrue(similar(targetLength, length, scaledTolerance));
     }
@@ -376,13 +341,5 @@ public class Vector3fTest {
         assertTrue(v1.x == -1 && v1.y == 1 && v1.z == 2);
         assertTrue(v2.x == 1 && v2.y == 2 && v2.z == 5);
         assertTrue(diff.x == -2 && diff.y == -1 && diff.z == -3);
-    }
-
-    private boolean similar(float a, float b) {
-        return Math.abs(a - b) < NORMALIZATION_TOLERANCE;
-    }
-
-    private boolean similar(float a, float b, float tolerance) {
-        return Math.abs(a - b) < tolerance;
     }
 }

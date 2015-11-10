@@ -6,28 +6,12 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class QuaternionfTest {
-
-    /**
-     * We need this for all functions that involve normalization because normalization introduces floating point errors
-     * into those calculations.
-     */
-    final float NORMALIZATION_TOLERANCE = 0.000001f;
+public class QuaternionfTest extends VectorfTest {
 
     Quaternionf q1;
     Quaternionf q2;
-    float angle;
-    float targetAngle;
-    float dot;
-    float targetDot;
-    float length;
-    float targetLength;
-    float lengthSq;
-    float targetLengthSq;
     Vector3f inputAxis;
     Vector3f outputAxis;
-    float inputAngle;
-    float outputAngle;
 
     @Test
     public void testAngleBetween() throws Exception {
@@ -107,9 +91,7 @@ public class QuaternionfTest {
         inputAxis.normalize();
         outputAxis = q1.getAxis();
 
-        assertTrue(Math.abs(inputAxis.x - outputAxis.x) < NORMALIZATION_TOLERANCE);
-        assertTrue(Math.abs(inputAxis.y - outputAxis.y) < NORMALIZATION_TOLERANCE);
-        assertTrue(Math.abs(inputAxis.z - outputAxis.z) < NORMALIZATION_TOLERANCE);
+        assertTrue(similar(inputAxis, outputAxis));
     }
 
     @Test
@@ -193,7 +175,7 @@ public class QuaternionfTest {
         length = q1.length();
         targetLength = 1;
 
-        assertTrue(Math.abs(targetLength - length) < NORMALIZATION_TOLERANCE);
+        assertTrue(similar(targetLength, length));
 
         q1 = new Quaternionf(25, -10, 13, 1);
 
@@ -201,7 +183,7 @@ public class QuaternionfTest {
         length = q1.length();
         targetLength = 1;
 
-        assertTrue(Math.abs(targetLength - length) < NORMALIZATION_TOLERANCE);
+        assertTrue(similar(targetLength, length));
     }
 
     @Test
@@ -216,7 +198,7 @@ public class QuaternionfTest {
         length = q2.length();
         targetLength = 1;
 
-        assertTrue(Math.abs(targetLength - length) < NORMALIZATION_TOLERANCE);
+        assertTrue(similar(targetLength, length));
         assertTrue(q1.w == 1 && q1.x == 1 && q1.y == 1 && q1.z == 1);
 
         q1 = new Quaternionf(25, -10, 13, 1);
@@ -225,7 +207,7 @@ public class QuaternionfTest {
         length = q2.length();
         targetLength = 1;
 
-        assertTrue(Math.abs(targetLength - length) < NORMALIZATION_TOLERANCE);
+        assertTrue(similar(targetLength, length));
         assertTrue(q1.w == 25 && q1.x == -10 && q1.y == 13 && q1.z == 1);
     }
 
@@ -260,9 +242,7 @@ public class QuaternionfTest {
         outputAxis = q1.getAxis();
         outputAngle = q1.getAngle();
 
-        assertTrue(Math.abs(inputAxis.x - outputAxis.x) < NORMALIZATION_TOLERANCE);
-        assertTrue(Math.abs(inputAxis.y - outputAxis.y) < NORMALIZATION_TOLERANCE);
-        assertTrue(Math.abs(inputAxis.z - outputAxis.z) < NORMALIZATION_TOLERANCE);
+        assertTrue(similar(inputAxis, outputAxis));
         assertTrue(inputAngle == outputAngle);
     }
 
@@ -365,18 +345,18 @@ public class QuaternionfTest {
         float cos;
         float sin;
         Matrix4f r;
+        Matrix4f r2;
 
         //===============================
         //rotation around x by 90 degrees
         //===============================
         inputAxis = new Vector3f(1, 0, 0);
         inputAngle = (float) Math.PI / 2f;
-        q1 = new Quaternionf().setFromAxisAngle(inputAxis, inputAngle);
-
-        r = q1.toRotationMatrix();
-
         cos = (float) Math.cos(inputAngle);
         sin = (float) Math.sin(inputAngle);
+
+        q1 = new Quaternionf().setFromAxisAngle(inputAxis, inputAngle);
+        r = q1.toRotationMatrix();
         /**
          * rotation of "d" degrees around x-axis should look like this:
          * 1     0       0  0
@@ -384,22 +364,24 @@ public class QuaternionfTest {
          * 0 sin(d)  cos(d) 0
          * 0     0       0  1
          */
-        assertTrue(similar(r.m00, 1) && similar(r.m01,   0) && similar(r.m02,    0) && similar(r.m03, 0));
-        assertTrue(similar(r.m10, 0) && similar(r.m11, cos) && similar(r.m12, -sin) && similar(r.m13, 0));
-        assertTrue(similar(r.m20, 0) && similar(r.m21, sin) && similar(r.m22,  cos) && similar(r.m23, 0));
-        assertTrue(similar(r.m30, 0) && similar(r.m31,   0) && similar(r.m32,    0) && similar(r.m33, 1));
+        r2 = new Matrix4f();
+        r2.m00 = 1; r2.m01 = 0;   r2.m02 =    0; r2.m03 = 0;
+        r2.m10 = 0; r2.m11 = cos; r2.m12 = -sin; r2.m13 = 0;
+        r2.m20 = 0; r2.m21 = sin; r2.m22 =  cos; r2.m23 = 0;
+        r2.m30 = 0; r2.m31 = 0;   r2.m32 =    0; r2.m33 = 1;
+
+        assertTrue(similar(r, r2));
 
         //===============================
         //rotation around y by 90 degrees
         //===============================
         inputAxis = new Vector3f(0, 1, 0);
         inputAngle = (float) Math.PI / 2f;
-        q1 = new Quaternionf().setFromAxisAngle(inputAxis, inputAngle);
-
-        r = q1.toRotationMatrix();
-
         cos = (float) Math.cos(inputAngle);
         sin = (float) Math.sin(inputAngle);
+
+        q1 = new Quaternionf().setFromAxisAngle(inputAxis, inputAngle);
+        r = q1.toRotationMatrix();
         /**
          * rotation of "d" degrees around y-axis should look like this:
          *  cos(d) 0 sin(d) 0
@@ -407,22 +389,24 @@ public class QuaternionfTest {
          * -sin(d) 0 cos(d) 0
          *      0  0     0  1
          */
-        assertTrue(similar(r.m00,  cos) && similar(r.m01, 0) && similar(r.m02, sin) && similar(r.m03, 0));
-        assertTrue(similar(r.m10,    0) && similar(r.m11, 1) && similar(r.m12,   0) && similar(r.m13, 0));
-        assertTrue(similar(r.m20, -sin) && similar(r.m21, 0) && similar(r.m22, cos) && similar(r.m23, 0));
-        assertTrue(similar(r.m30,    0) && similar(r.m31, 0) && similar(r.m32,   0) && similar(r.m33, 1));
+        r2 = new Matrix4f();
+        r2.m00 =  cos; r2.m01 = 0; r2.m02 = sin; r2.m03 = 0;
+        r2.m10 =    0; r2.m11 = 1; r2.m12 =   0; r2.m13 = 0;
+        r2.m20 = -sin; r2.m21 = 0; r2.m22 = cos; r2.m23 = 0;
+        r2.m30 =    0; r2.m31 = 0; r2.m32 =   0; r2.m33 = 1;
+
+        assertTrue(similar(r, r2));
 
         //===============================
         //rotation around z by 90 degrees
         //===============================
         inputAxis = new Vector3f(0, 0, 1);
         inputAngle = (float) Math.PI / 2f;
-        q1 = new Quaternionf().setFromAxisAngle(inputAxis, inputAngle);
-
-        r = q1.toRotationMatrix();
-
         cos = (float) Math.cos(inputAngle);
         sin = (float) Math.sin(inputAngle);
+
+        q1 = new Quaternionf().setFromAxisAngle(inputAxis, inputAngle);
+        r = q1.toRotationMatrix();
         /**
          * rotation of "d" degrees around y-axis should look like this:
          *  cos(d) -sin(d) 0 0
@@ -430,20 +414,13 @@ public class QuaternionfTest {
          *      0       0  1 0
          *      0       0  0 1
          */
-        assertTrue(similar(r.m00, cos) && similar(r.m01, -sin) && similar(r.m02, 0) && similar(r.m03, 0));
-        assertTrue(similar(r.m10, sin) && similar(r.m11,  cos) && similar(r.m12, 0) && similar(r.m13, 0));
-        assertTrue(similar(r.m20,   0) && similar(r.m21,    0) && similar(r.m22, 1) && similar(r.m23, 0));
-        assertTrue(similar(r.m30,   0) && similar(r.m31,    0) && similar(r.m32, 0) && similar(r.m33, 1));
-    }
+        r2 = new Matrix4f();
+        r2.m00 =  cos; r2.m01 = -sin; r2.m02 = 0; r2.m03 = 0;
+        r2.m10 =  sin; r2.m11 =  cos; r2.m12 = 0; r2.m13 = 0;
+        r2.m20 =    0; r2.m21 =    0; r2.m22 = 1; r2.m23 = 0;
+        r2.m30 =    0; r2.m31 =    0; r2.m32 = 0; r2.m33 = 1;
 
-    private boolean similar(float a, float b) {
-        return Math.abs(a - b) < NORMALIZATION_TOLERANCE;
-    }
-
-    private boolean similar(Matrix3f a, Matrix3f b) {
-        return  similar(a.m00, b.m00) && similar(a.m01, b.m01) && similar(a.m02, b.m02) &&
-                similar(a.m10, b.m10) && similar(a.m11, b.m11) && similar(a.m12, b.m12) &&
-                similar(a.m20, b.m20) && similar(a.m21, b.m21) && similar(a.m22, b.m22);
+        assertTrue(similar(r, r2));
     }
 
     private boolean similar(Matrix4f a, Matrix4f b) {
@@ -451,9 +428,5 @@ public class QuaternionfTest {
                 similar(a.m10, b.m10) && similar(a.m11, b.m11) && similar(a.m12, b.m12) && similar(a.m13, b.m13) &&
                 similar(a.m20, b.m20) && similar(a.m21, b.m21) && similar(a.m22, b.m22) && similar(a.m23, b.m23) &&
                 similar(a.m30, b.m30) && similar(a.m31, b.m31) && similar(a.m32, b.m32) && similar(a.m33, b.m33);
-    }
-
-    private boolean similar(float a, float b, float tolerance) {
-        return Math.abs(a - b) < tolerance;
     }
 }
