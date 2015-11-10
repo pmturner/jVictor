@@ -10,6 +10,10 @@ public class Vector3d implements jvictor.math.vector.interfaces.Vector3d<Vector3
         this(0, 0, 0);
     }
 
+    public Vector3d(Vector2d v) {
+        this(v.x, v.y, 0);
+    }
+
     public Vector3d(Vector3d v) {
         this(v.x, v.y, v.z);
     }

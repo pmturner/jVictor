@@ -13,6 +13,14 @@ public class Vector4d implements Vectord<Vector4d> {
         this(0, 0, 0, 0);
     }
 
+    public Vector4d(Vector2d v) {
+        this(v.x, v.y, 0, 0);
+    }
+
+    public Vector4d(Vector3d v) {
+        this(v.x, v.y, v.z, 0);
+    }
+
     public Vector4d(Vector4d v) {
         this(v.x, v.y, v.z, v.w);
     }
