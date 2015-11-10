@@ -233,25 +233,26 @@ public class Quaternionf implements jvictor.math.vector.interfaces.Quaternionf<Q
         rot.m00 = 1 - 2 * (ySq + zSq);
         rot.m01 =     2 * (xy  -  zw);
         rot.m02 =     2 * (xz  +  yw);
-        rot.m03 = 0;
+        // new Matrix4d() sets this by default
+//        rot.m03 = 0;
 
         rot.m10 =     2 * (xy  +  zw);
         rot.m11 = 1 - 2 * (xSq + zSq);
         rot.m12 =     2 * (yz  -  xw);
-        rot.m13 = 0;
+        // new Matrix4d() sets this by default
+//        rot.m13 = 0;
 
         rot.m20 =     2 * (xz  -  yw);
         rot.m21 =     2 * (yz  +  xw);
         rot.m22 = 1 - 2 * (xSq + ySq);
-        rot.m23 = 0;
-        /*
-            TODO: this part shouldn't be necessary because this is the same as the identity matrix, but we need to make
-            TODO: sure it isn't before removing it.
-        */
-        rot.m30 = 0;
-        rot.m31 = 0;
-        rot.m32 = 0;
-        rot.m33 = 1;
+        // new Matrix4d() sets this by default
+//        rot.m23 = 0;
+
+        // new Matrix4d() sets this by default
+//        rot.m30 = 0;
+//        rot.m31 = 0;
+//        rot.m32 = 0;
+//        rot.m33 = 1;
         return rot;
     }
 }
