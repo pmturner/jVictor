@@ -66,10 +66,6 @@ public class Vector4f implements Vectorf<Vector4f> {
         return new Vector4f(cross.x, cross.y, cross.z, 0);
     }
 
-    private Vector4f crossVectors3d(Vector4f v1, Vector4f v2) {
-        return v1.cross3d(v2);
-    }
-
     @Override
     public float dot(Vector4f v) {
         return (x * v.x +

@@ -1,5 +1,7 @@
 package jvictor.math.vector;
 
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -8,6 +10,23 @@ public class Vector4dTest extends VectordTest {
 
     Vector4d v1;
     Vector4d v2;
+
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+        Vector4d v;
+
+        //test "special" constructors for code coverage
+        v = new Vector4d(new Vector2d(1, 2));
+        assertTrue(v.x == 1 && v.y == 2 && v.z == 0 && v.w == 0);
+
+        v = new Vector4d(new Vector3d(1, 2, 3));
+        assertTrue(v.x == 1 && v.y == 2 && v.z == 3 && v.w == 0);
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+
+    }
 
     @Test
     public void testAdd() throws Exception {

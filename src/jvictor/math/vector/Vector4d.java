@@ -66,10 +66,6 @@ public class Vector4d implements Vectord<Vector4d> {
         return new Vector4d(cross.x, cross.y, cross.z, 0);
     }
 
-    private Vector4d crossVectors3d(Vector4d v1, Vector4d v2) {
-        return v1.cross3d(v2);
-    }
-
     @Override
     public double dot(Vector4d v) {
         return x * v.x + y * v.y + z * v.z + w * v.w;
