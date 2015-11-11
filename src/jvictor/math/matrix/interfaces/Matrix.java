@@ -39,7 +39,7 @@ public interface Matrix<MatType, VecType> {
      * @param m the Right Hand Side matrix in the multiplication.
      * @return <code>this</code> matrix after it has been multiplied by <code>m</code>.
      */
-    MatType mul(MatType m);
+    MatType mul(MatType m2);
 
     /**
      * Calculate and return the result of multiplying the matrices <code>m1</code> and <code>m2</code>.
