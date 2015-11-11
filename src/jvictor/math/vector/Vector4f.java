@@ -68,10 +68,7 @@ public class Vector4f implements Vectorf<Vector4f> {
 
     @Override
     public float dot(Vector4f v) {
-        return (x * v.x +
-                y * v.y +
-                z * v.z +
-                w * v.w);
+        return (x * v.x) + (y * v.y) + (z * v.z) + (w * v.w);
     }
 
     @Override
@@ -86,10 +83,7 @@ public class Vector4f implements Vectorf<Vector4f> {
 
     @Override
     public float lengthSquared() {
-        return (x * x +
-                y * y +
-                z * z +
-                w * w);
+        return (x * x) + (y * y) + (z * z) + (w * w);
     }
 
     @Override

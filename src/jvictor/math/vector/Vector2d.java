@@ -41,13 +41,13 @@ public class Vector2d implements Vectord<Vector2d> {
     @Override
     public double angleTo(Vector2d v) {
         double dot = dot(v);
-        double det = x * v.y - y * v.x;
+        double det = (x * v.y) - (y * v.x);
         return Math.atan2(det, dot);
     }
 
     @Override
     public double dot(Vector2d v) {
-        return x * v.x + y * v.y;
+        return (x * v.x) + (y * v.y);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class Vector2d implements Vectord<Vector2d> {
 
     @Override
     public double lengthSquared() {
-        return x * x + y * y;
+        return (x * x) + (y * y);
     }
 
     @Override

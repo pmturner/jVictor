@@ -68,7 +68,7 @@ public class Vector4d implements Vectord<Vector4d> {
 
     @Override
     public double dot(Vector4d v) {
-        return x * v.x + y * v.y + z * v.z + w * v.w;
+        return (x * v.x) + (y * v.y) + (z * v.z) + (w * v.w);
     }
 
     @Override
@@ -83,7 +83,7 @@ public class Vector4d implements Vectord<Vector4d> {
 
     @Override
     public double lengthSquared() {
-        return x * x + y * y + z * z + w * w;
+        return (x * x) + (y * y) + (z * z) + (w * w);
     }
 
     @Override

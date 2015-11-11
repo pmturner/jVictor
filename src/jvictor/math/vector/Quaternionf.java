@@ -41,7 +41,7 @@ public class Quaternionf implements jvictor.math.vector.interfaces.Quaternionf<Q
 
     @Override
     public float dot(Quaternionf q) {
-        return w * q.w + x * q.x + y * q.y + z * q.z;
+        return (w * q.w) + (x * q.x) + (y * q.y) + (z * q.z);
     }
 
     @Override
@@ -84,17 +84,17 @@ public class Quaternionf implements jvictor.math.vector.interfaces.Quaternionf<Q
 
     @Override
     public float lengthSquared() {
-        return w * w + x * x + y * y + z * z;
+        return (w * w) + (x * x) + (y * y) + (z * z);
     }
 
     @Override
     public Quaternionf mul(Quaternionf q2) {
         Quaternionf q1 = new Quaternionf(this);
 
-        w = q1.w * q2.w - q1.x * q2.x - q1.y * q2.y - q1.z * q2.z;
-        x = q1.w * q2.x + q1.x * q2.w + q1.y * q2.z - q1.z * q2.y;
-        y = q1.w * q2.y - q1.x * q2.z + q1.y * q2.w + q1.z * q2.x;
-        z = q1.w * q2.z + q1.x * q2.y - q1.y * q2.x + q1.z * q2.w;
+        w = (q1.w * q2.w) - (q1.x * q2.x) - (q1.y * q2.y) - (q1.z * q2.z);
+        x = (q1.w * q2.x) + (q1.x * q2.w) + (q1.y * q2.z) - (q1.z * q2.y);
+        y = (q1.w * q2.y) - (q1.x * q2.z) + (q1.y * q2.w) + (q1.z * q2.x);
+        z = (q1.w * q2.z) + (q1.x * q2.y) - (q1.y * q2.x) + (q1.z * q2.w);
 
         return this;
     }
@@ -120,7 +120,7 @@ public class Quaternionf implements jvictor.math.vector.interfaces.Quaternionf<Q
 
     @Override
     public Quaternionf normalize() {
-        float length = (float) Math.sqrt(w * w + x * x + y * y + z * z);
+        float length = length();
         w /= length;
         x /= length;
         y /= length;

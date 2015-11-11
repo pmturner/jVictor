@@ -53,9 +53,9 @@ public class Vector3d implements jvictor.math.vector.interfaces.Vector3d<Vector3
     @Override
     public Vector3d cross(Vector3d v) {
         return new Vector3d(
-                y * v.z - z * v.y,
-                z * v.x - x * v.z,
-                x * v.y - y * v.x
+                (y * v.z) - (z * v.y),
+                (z * v.x) - (x * v.z),
+                (x * v.y) - (y * v.x)
         );
     }
 
@@ -66,7 +66,7 @@ public class Vector3d implements jvictor.math.vector.interfaces.Vector3d<Vector3
 
     @Override
     public double dot(Vector3d v) {
-        return x * v.x + y * v.y + z * v.z;
+        return (x * v.x) + (y * v.y) + (z * v.z);
     }
 
     @Override
@@ -81,7 +81,7 @@ public class Vector3d implements jvictor.math.vector.interfaces.Vector3d<Vector3
 
     @Override
     public double lengthSquared() {
-        return x * x + y * y + z * z;
+        return (x * x) + (y * y) + (z * z);
     }
 
     @Override

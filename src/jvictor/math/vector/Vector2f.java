@@ -41,13 +41,13 @@ public class Vector2f implements Vectorf<Vector2f> {
     @Override
     public float angleTo(Vector2f v) {
         float dot = dot(v);
-        float det = x * v.y - y * v.x;
+        float det = (x * v.y) - (y * v.x);
         return (float) Math.atan2(det, dot);
     }
 
     @Override
     public float dot(Vector2f v) {
-        return x * v.x + y * v.y;
+        return (x * v.x) + (y * v.y);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class Vector2f implements Vectorf<Vector2f> {
 
     @Override
     public float lengthSquared() {
-        return x * x + y * y;
+        return (x * x) + (y * y);
     }
 
     @Override
