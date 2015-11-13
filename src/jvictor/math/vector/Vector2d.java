@@ -124,4 +124,12 @@ public class Vector2d implements Vectord<Vector2d> {
         Vector2d v1Copy = new Vector2d(v1);
         return v1Copy.sub(v2);
     }
+
+    public boolean equals(Vector2d v) {
+        return  (x == v.x) && (y == v.y);
+    }
+
+    public String toString() {
+        return "[" + x + ", " + y + "]";
+    }
 }
