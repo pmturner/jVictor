@@ -74,6 +74,13 @@ public class Matrix4d implements jvictor.math.matrix.interfaces.Matrix4d<Matrix4
         return 0;
     }
 
+    public boolean equals(Matrix4d m) {
+        return (m00 == m.m00) && (m01 == m.m01) && (m02 == m.m02) && (m03 == m.m03) &&
+                (m10 == m.m10) && (m11 == m.m11) && (m12 == m.m12) && (m13 == m.m13) &&
+                (m20 == m.m20) && (m21 == m.m21) && (m22 == m.m22) && (m23 == m.m23) &&
+                (m30 == m.m30) && (m31 == m.m31) && (m32 == m.m32) && (m33 == m.m33);
+    }
+
     @Override
     public Matrix4d invert() {
         return null;
@@ -115,26 +122,6 @@ public class Matrix4d implements jvictor.math.matrix.interfaces.Matrix4d<Matrix4
     }
 
     @Override
-    public Matrix4d translateBy(Vector2d v) {
-        return null;
-    }
-
-    @Override
-    public Matrix4d translateBy(Vector3d v) {
-        return null;
-    }
-
-    @Override
-    public Matrix4d translateCopyBy(Vector2d v) {
-        return null;
-    }
-
-    @Override
-    public Matrix4d translateCopyBy(Vector3d v) {
-        return null;
-    }
-
-    @Override
     public Matrix4d setIdentity() {
         return null;
     }
@@ -155,12 +142,42 @@ public class Matrix4d implements jvictor.math.matrix.interfaces.Matrix4d<Matrix4
     }
 
     @Override
+    public String toString() {
+        String s = "";
+        s += "[[" + m00 + ", " + m01 + ", " + m02 + ", " + m03 + "]\n";
+        s += " [" + m10 + ", " + m11 + ", " + m12 + ", " + m13 + "]\n";
+        s += " [" + m20 + ", " + m21 + ", " + m22 + ", " + m23 + "]\n";
+        s += " [" + m30 + ", " + m31 + ", " + m32 + ", " + m33 + "]]";
+        return s;
+    }
+
+    @Override
     public Vector4d transformVector(Vector4d v) {
         return null;
     }
 
     @Override
     public Vector4d transformVectorCopy(Vector4d v) {
+        return null;
+    }
+
+    @Override
+    public Matrix4d translateBy(Vector2d v) {
+        return null;
+    }
+
+    @Override
+    public Matrix4d translateBy(Vector3d v) {
+        return null;
+    }
+
+    @Override
+    public Matrix4d translateCopyBy(Vector2d v) {
+        return null;
+    }
+
+    @Override
+    public Matrix4d translateCopyBy(Vector3d v) {
         return null;
     }
 

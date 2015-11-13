@@ -30,6 +30,14 @@ public class Vector4fTest extends VectorfTest {
     }
 
     @Test
+    public void testEquals() throws Exception {
+        v1 = new Vector4f(1, 2, 3, 4);
+        v2 = new Vector4f(v1);
+
+        assertTrue(v1.equals(v2));
+    }
+
+    @Test
     public void testAdd() throws Exception {
         v1 = new Vector4f(1, 1, 1, 1);
         v2 = new Vector4f(1, 1, 1, 1);

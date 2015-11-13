@@ -14,6 +14,14 @@ public class QuaterniondTest extends VectordTest {
     Vector3d outputAxis;
 
     @Test
+    public void testEquals() throws Exception {
+        q1 = new Quaterniond(1, 2, 3, 4);
+        q2 = new Quaterniond(q1);
+
+        assertTrue(q1.equals(q2));
+    }
+
+    @Test
     public void testAngleBetween() throws Exception {
         q1 = new Quaterniond().setFromAxisAngle(new Vector3d(1, 0, 0), Math.PI / 2);
         q2 = new Quaterniond().setFromAxisAngle(new Vector3d(1, 0, 0), Math.PI);

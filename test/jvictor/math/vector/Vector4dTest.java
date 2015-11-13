@@ -29,6 +29,14 @@ public class Vector4dTest extends VectordTest {
     }
 
     @Test
+    public void testEquals() throws Exception {
+        v1 = new Vector4d(1, 2, 3, 4);
+        v2 = new Vector4d(v1);
+
+        assertTrue(v1.equals(v2));
+    }
+
+    @Test
     public void testAdd() throws Exception {
         v1 = new Vector4d(1, 1, 1, 1);
         v2 = new Vector4d(1, 1, 1, 1);

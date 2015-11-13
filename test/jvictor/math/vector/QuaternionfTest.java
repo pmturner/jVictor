@@ -14,6 +14,14 @@ public class QuaternionfTest extends VectorfTest {
     Vector3f outputAxis;
 
     @Test
+    public void testEquals() throws Exception {
+        q1 = new Quaternionf(1, 2, 3, 4);
+        q2 = new Quaternionf(q1);
+
+        assertTrue(q1.equals(q2));
+    }
+
+    @Test
     public void testAngleBetween() throws Exception {
         q1 = new Quaternionf().setFromAxisAngle(new Vector3f(1, 0, 0), (float) Math.PI / 2f);
         q2 = new Quaternionf().setFromAxisAngle(new Vector3f(1, 0, 0), (float) Math.PI);

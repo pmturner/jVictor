@@ -10,12 +10,20 @@ public class Vector2fTest extends VectorfTest {
     Vector2f v2;
 
     @Test
+    public void testEquals() throws Exception {
+        v1 = new Vector2f(1, 2);
+        v2 = new Vector2f(v1);
+
+        assertTrue(v1.equals(v2));
+    }
+
+    @Test
     public void testAdd() throws Exception {
         v1 = new Vector2f(1, 1);
         v2 = new Vector2f(1, 1);
         Vector2f result = v1.add(v2);
 
-//        assertTrue(result.x == 2 && result.y == 2);
+        assertTrue(result.x == 2 && result.y == 2);
         assertTrue(v1.x == 2 && v1.y == 2);
         assertTrue(v2.x == 1 && v2.y == 1);
     }

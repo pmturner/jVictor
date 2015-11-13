@@ -35,6 +35,11 @@ public class Matrix2f implements Matrixf<Matrix2f, Vector2f> {
         return 0;
     }
 
+    public boolean equals(Matrix2f m) {
+        return (m00 == m.m00) && (m01 == m.m01) &&
+                (m10 == m.m10) && (m11 == m.m11);
+    }
+
     @Override
     public Matrix2f invert() {
         return null;
@@ -83,6 +88,14 @@ public class Matrix2f implements Matrixf<Matrix2f, Vector2f> {
     @Override
     public Matrix2f subMatrices(Matrix2f m1, Matrix2f m2) {
         return null;
+    }
+
+    @Override
+    public String toString() {
+        String s = "";
+        s += "[[" + m00 + ", " + m01 + "]\n";
+        s += " [" + m10 + ", " + m11 + "]]";
+        return s;
     }
 
     @Override

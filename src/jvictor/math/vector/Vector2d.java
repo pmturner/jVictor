@@ -55,6 +55,10 @@ public class Vector2d implements Vectord<Vector2d> {
         return v1.dot(v2);
     }
 
+    public boolean equals(Vector2d v) {
+        return (x == v.x) && (y == v.y);
+    }
+
     @Override
     public double length() {
         return Math.sqrt(lengthSquared());
@@ -125,10 +129,7 @@ public class Vector2d implements Vectord<Vector2d> {
         return v1Copy.sub(v2);
     }
 
-    public boolean equals(Vector2d v) {
-        return  (x == v.x) && (y == v.y);
-    }
-
+    @Override
     public String toString() {
         return "[" + x + ", " + y + "]";
     }

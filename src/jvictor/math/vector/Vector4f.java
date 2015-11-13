@@ -76,6 +76,10 @@ public class Vector4f implements Vectorf<Vector4f> {
         return v1.dot(v2);
     }
 
+    public boolean equals(Vector4f v) {
+        return (x == v.x) && (y == v.y) && (z == v.z) && (w == v.w);
+    }
+
     @Override
     public float length() {
         return (float) Math.sqrt(lengthSquared());
@@ -152,5 +156,10 @@ public class Vector4f implements Vectorf<Vector4f> {
     public Vector4f subVectors(Vector4f v1, Vector4f v2) {
         Vector4f v1Copy = new Vector4f(v1);
         return v1Copy.sub(v2);
+    }
+
+    @Override
+    public String toString() {
+        return "[" + x + ", " + y + ", " + z + ", " + w + "]";
     }
 }

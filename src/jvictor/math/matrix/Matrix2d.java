@@ -15,18 +15,22 @@ public class Matrix2d implements Matrixd<Matrix2d, Vector2d> {
     }
 
     public Matrix2d(Matrix2d src) {
-        this (src.m00, src.m01, src.m10, src.m11);
+        this(src.m00, src.m01, src.m10, src.m11);
     }
 
     public Matrix2d(double m00, double m01, double m10, double m11) {
-        this.m00 = m00; this.m01 = m01;
-        this.m10 = m10; this.m11 = m11;
+        this.m00 = m00;
+        this.m01 = m01;
+        this.m10 = m10;
+        this.m11 = m11;
     }
 
     @Override
     public Matrix2d add(Matrix2d m) {
-        m00 += m.m00; m01 += m.m01;
-        m10 += m.m10; m11 += m.m11;
+        m00 += m.m00;
+        m01 += m.m01;
+        m10 += m.m10;
+        m11 += m.m11;
         return this;
     }
 
@@ -41,6 +45,11 @@ public class Matrix2d implements Matrixd<Matrix2d, Vector2d> {
         return (m00 * m11) - (m01 * m10);
     }
 
+    public boolean equals(Matrix2d m) {
+        return (m00 == m.m00) && (m01 == m.m01) &&
+                (m10 == m.m10) && (m11 == m.m11);
+    }
+
     @Override
     public Matrix2d invert() {
         double det = determinant();
@@ -51,10 +60,10 @@ public class Matrix2d implements Matrixd<Matrix2d, Vector2d> {
         double invDet = 1.0 / det;
         double temp = m00;
 
-        m00 =  m11 *  invDet;
-        m01 =  m01 * -invDet;
-        m10 =  m10 * -invDet;
-        m11 = temp *  invDet;
+        m00 = m11 * invDet;
+        m01 = m01 * -invDet;
+        m10 = m10 * -invDet;
+        m11 = temp * invDet;
 
         return this;
     }
@@ -83,8 +92,10 @@ public class Matrix2d implements Matrixd<Matrix2d, Vector2d> {
 
     @Override
     public Matrix2d negate() {
-        m00 = -m00; m01 = -m01;
-        m10 = -m10; m11 = -m11;
+        m00 = -m00;
+        m01 = -m01;
+        m10 = -m10;
+        m11 = -m11;
         return this;
     }
 
@@ -95,15 +106,19 @@ public class Matrix2d implements Matrixd<Matrix2d, Vector2d> {
 
     @Override
     public Matrix2d setIdentity() {
-        m00 = 1; m01 = 0;
-        m10 = 0; m11 = 1;
+        m00 = 1;
+        m01 = 0;
+        m10 = 0;
+        m11 = 1;
         return this;
     }
 
     @Override
     public Matrix2d setZero() {
-        m00 = 0; m01 = 0;
-        m10 = 0; m11 = 0;
+        m00 = 0;
+        m01 = 0;
+        m10 = 0;
+        m11 = 0;
         return this;
     }
 
@@ -120,6 +135,14 @@ public class Matrix2d implements Matrixd<Matrix2d, Vector2d> {
     public Matrix2d subMatrices(Matrix2d m1, Matrix2d m2) {
         Matrix2d m1Copy = new Matrix2d(m1);
         return m1Copy.sub(m2);
+    }
+
+    @Override
+    public String toString() {
+        String s = "";
+        s += "[[" + m00 + ", " + m01 + "]\n";
+        s += " [" + m10 + ", " + m11 + "]]";
+        return s;
     }
 
     @Override
@@ -146,8 +169,8 @@ public class Matrix2d implements Matrixd<Matrix2d, Vector2d> {
         // m00 doesn't change
 
         temp = m01;
-        m01  = m10;
-        m10  = temp;
+        m01 = m10;
+        m10 = temp;
 
         // m11 doesn't change
 
@@ -157,10 +180,5 @@ public class Matrix2d implements Matrixd<Matrix2d, Vector2d> {
     @Override
     public Matrix2d transposeCopy() {
         return new Matrix2d(this).transpose();
-    }
-
-    public boolean equals(Matrix2d m) {
-        return  (m00 == m.m00) && (m01 == m.m01) &&
-                (m10 == m.m10) && (m11 == m.m11);
     }
 }

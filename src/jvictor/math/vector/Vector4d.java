@@ -76,6 +76,10 @@ public class Vector4d implements Vectord<Vector4d> {
         return v1.dot(v2);
     }
 
+    public boolean equals(Vector4d v) {
+        return (x == v.x) && (y == v.y) && (z == v.z) && (w == v.w);
+    }
+
     @Override
     public double length() {
         return Math.sqrt(lengthSquared());
@@ -152,5 +156,10 @@ public class Vector4d implements Vectord<Vector4d> {
     public Vector4d subVectors(Vector4d v1, Vector4d v2) {
         Vector4d v1Copy = new Vector4d(v1);
         return v1Copy.sub(v2);
+    }
+
+    @Override
+    public String toString() {
+        return "[" + x + ", " + y + ", " + z + ", " + w + "]";
     }
 }

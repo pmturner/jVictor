@@ -50,6 +50,10 @@ public class Quaterniond implements jvictor.math.vector.interfaces.Quaterniond<Q
         return q1.dot(q2);
     }
 
+    public boolean equals(Quaterniond q) {
+        return (w == q.w) && (x == q.x) && (y == q.y) && (z == q.z);
+    }
+
     @Override
     public double getAngle() {
         return 2 * Math.acos(w);
@@ -231,19 +235,19 @@ public class Quaterniond implements jvictor.math.vector.interfaces.Quaterniond<Q
         Matrix4d rot = new Matrix4d();
 
         rot.m00 = 1 - 2 * (ySq + zSq);
-        rot.m01 =     2 * (xy  -  zw);
-        rot.m02 =     2 * (xz  +  yw);
+        rot.m01 = 2 * (xy - zw);
+        rot.m02 = 2 * (xz + yw);
         // new Matrix4d() sets this by default
 //        rot.m03 = 0;
 
-        rot.m10 =     2 * (xy  +  zw);
+        rot.m10 = 2 * (xy + zw);
         rot.m11 = 1 - 2 * (xSq + zSq);
-        rot.m12 =     2 * (yz  -  xw);
+        rot.m12 = 2 * (yz - xw);
         // new Matrix4d() sets this by default
 //        rot.m13 = 0;
 
-        rot.m20 =     2 * (xz  -  yw);
-        rot.m21 =     2 * (yz  +  xw);
+        rot.m20 = 2 * (xz - yw);
+        rot.m21 = 2 * (yz + xw);
         rot.m22 = 1 - 2 * (xSq + ySq);
         // new Matrix4d() sets this by default
 //        rot.m23 = 0;
@@ -254,5 +258,10 @@ public class Quaterniond implements jvictor.math.vector.interfaces.Quaterniond<Q
 //        rot.m32 = 0;
 //        rot.m33 = 1;
         return rot;
+    }
+
+    @Override
+    public String toString() {
+        return "[" + w + ", " + x + ", " + y + ", " + z + "]";
     }
 }

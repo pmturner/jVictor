@@ -26,6 +26,14 @@ public class Vector3dTest extends VectordTest {
     }
 
     @Test
+    public void testEquals() throws Exception {
+        v1 = new Vector3d(1, 2, 3);
+        v2 = new Vector3d(v1);
+
+        assertTrue(v1.equals(v2));
+    }
+
+    @Test
     public void testAdd() throws Exception {
         v1 = new Vector3d(1, 2, 3);
         v2 = new Vector3d(1, 2, 3);

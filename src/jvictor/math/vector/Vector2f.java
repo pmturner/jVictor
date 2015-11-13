@@ -55,6 +55,10 @@ public class Vector2f implements Vectorf<Vector2f> {
         return v1.dot(v2);
     }
 
+    public boolean equals(Vector2f v) {
+        return (x == v.x) && (y == v.y);
+    }
+
     @Override
     public float length() {
         return (float) Math.sqrt(lengthSquared());
@@ -122,5 +126,10 @@ public class Vector2f implements Vectorf<Vector2f> {
     @Override
     public Vector2f subVectors(Vector2f v1, Vector2f v2) {
         return new Vector2f(v1).sub(v2);
+    }
+
+    @Override
+    public String toString() {
+        return "[" + x + ", " + y + "]";
     }
 }

@@ -74,6 +74,10 @@ public class Vector3d implements jvictor.math.vector.interfaces.Vector3d<Vector3
         return v1.dot(v2);
     }
 
+    public boolean equals(Vector3d v) {
+        return (x == v.x) && (y == v.y) && (z == v.z);
+    }
+
     @Override
     public double length() {
         return Math.sqrt(lengthSquared());
@@ -146,5 +150,10 @@ public class Vector3d implements jvictor.math.vector.interfaces.Vector3d<Vector3
     public Vector3d subVectors(Vector3d v1, Vector3d v2) {
         Vector3d v1Copy = new Vector3d(v1);
         return v1Copy.sub(v2);
+    }
+
+    @Override
+    public String toString() {
+        return "[" + x + ", " + y + ", " + z + "]";
     }
 }

@@ -42,6 +42,12 @@ public class Matrix3f implements Matrixf<Matrix3f, Vector3f> {
         return 0;
     }
 
+    public boolean equals(Matrix3f m) {
+        return  (m00 == m.m00) && (m01 == m.m01) && (m02 == m.m02) &&
+                (m10 == m.m10) && (m11 == m.m11) && (m12 == m.m12) &&
+                (m20 == m.m20) && (m21 == m.m21) && (m22 == m.m22);
+    }
+
     @Override
     public Matrix3f invert() {
         return null;
@@ -93,6 +99,15 @@ public class Matrix3f implements Matrixf<Matrix3f, Vector3f> {
     }
 
     @Override
+    public String toString() {
+        String s = "";
+        s += "[[" + m00 + ", " + m01 + ", " + m02 + "]\n";
+        s += " [" + m10 + ", " + m11 + ", " + m12 + "]\n";
+        s += " [" + m20 + ", " + m21 + ", " + m22 + "]]";
+        return s;
+    }
+
+    @Override
     public Vector3f transformVector(Vector3f v) {
         return null;
     }
@@ -110,14 +125,5 @@ public class Matrix3f implements Matrixf<Matrix3f, Vector3f> {
     @Override
     public Matrix3f transposeCopy() {
         return null;
-    }
-
-    @Override
-    public String toString() {
-        String s = "";
-        s += "[[" + m00 + ", " + m01 + ", " + m02 + "]\n";
-        s += " [" + m10 + ", " + m11 + ", " + m12 + "]\n";
-        s += " [" + m20 + ", " + m21 + ", " + m22 + "]]";
-        return s;
     }
 }
