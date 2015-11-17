@@ -106,19 +106,15 @@ public class Matrix2d implements Matrixd<Matrix2d, Vector2d> {
 
     @Override
     public Matrix2d setIdentity() {
-        m00 = 1;
-        m01 = 0;
-        m10 = 0;
-        m11 = 1;
+        m00 = 1; m01 = 0;
+        m10 = 0; m11 = 1;
         return this;
     }
 
     @Override
     public Matrix2d setZero() {
-        m00 = 0;
-        m01 = 0;
-        m10 = 0;
-        m11 = 0;
+        m00 = 0; m01 = 0;
+        m10 = 0; m11 = 0;
         return this;
     }
 
