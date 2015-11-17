@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class Matrix2fTest {
+public class Matrix2fTest extends MatrixfTest {
 
     Matrix2f m1;
     Matrix2f m2;

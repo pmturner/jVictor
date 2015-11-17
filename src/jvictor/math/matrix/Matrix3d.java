@@ -68,14 +68,14 @@ public class Matrix3d implements Matrixd<Matrix3d, Vector3d> {
         minors.m00 = temp.determinant();
 
         temp.m00 = m10;
-        temp.m01 = m12;
+        temp.m01 = m12; //duplicate assignment
         temp.m10 = m20;
-        temp.m11 = m22;
+        temp.m11 = m22; //duplicate assignment
         minors.m01 = temp.determinant();
 
-        temp.m00 = m10;
+        temp.m00 = m10; //duplicate assignment
         temp.m01 = m11;
-        temp.m10 = m20;
+        temp.m10 = m20; //duplicate assignment
         temp.m11 = m21;
         minors.m02 = temp.determinant();
 
@@ -87,14 +87,14 @@ public class Matrix3d implements Matrixd<Matrix3d, Vector3d> {
         minors.m10 = temp.determinant();
 
         temp.m00 = m00;
-        temp.m01 = m02;
+        temp.m01 = m02; //duplicate assignment
         temp.m10 = m20;
-        temp.m11 = m22;
+        temp.m11 = m22; //duplicate assignment
         minors.m11 = temp.determinant();
 
-        temp.m00 = m00;
+        temp.m00 = m00; //duplicate assignment
         temp.m01 = m01;
-        temp.m10 = m20;
+        temp.m10 = m20; //duplicate assignment
         temp.m11 = m21;
         minors.m12 = temp.determinant();
 
@@ -106,14 +106,14 @@ public class Matrix3d implements Matrixd<Matrix3d, Vector3d> {
         minors.m20 = temp.determinant();
 
         temp.m00 = m00;
-        temp.m01 = m02;
+        temp.m01 = m02; //duplicate assignment
         temp.m10 = m10;
-        temp.m11 = m12;
+        temp.m11 = m12; //duplicate assignment
         minors.m21 = temp.determinant();
 
-        temp.m00 = m00;
+        temp.m00 = m00; //duplicate assignment
         temp.m01 = m01;
-        temp.m10 = m10;
+        temp.m10 = m10; //duplicate assignment
         temp.m11 = m11;
         minors.m22 = temp.determinant();
 

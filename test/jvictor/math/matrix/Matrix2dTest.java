@@ -1,12 +1,11 @@
 package jvictor.math.matrix;
 
-import jvictor.math.matrix.interfaces.Matrixd;
 import jvictor.math.vector.Vector2d;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class Matrix2dTest {
+public class Matrix2dTest extends MatrixdTest {
 
     Matrix2d m1;
     Matrix2d m2;

@@ -1,13 +1,8 @@
 package jvictor.math.matrix;
 
-import jvictor.math.matrix.Matrix2d;
-import jvictor.math.matrix.Matrix3d;
-import jvictor.math.matrix.Matrix4d;
-
 public class MatrixdTest {
 
     final double TOLERANCE = 0.000000000000001;
-
 
     public boolean similar(double a, double b) {
         return Math.abs(a - b) < TOLERANCE;
