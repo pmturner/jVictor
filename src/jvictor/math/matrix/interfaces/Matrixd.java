@@ -9,4 +9,6 @@ public interface Matrixd<MatType, VecType> extends Matrix<MatType, VecType> {
      */
     double determinant();
 
+    MatType mul(double d);
+
 }

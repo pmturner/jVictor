@@ -9,4 +9,6 @@ public interface Matrixf<MatType, VecType> extends Matrix<MatType, VecType> {
      */
     float determinant();
 
+    MatType mul(float f);
+
 }

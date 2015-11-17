@@ -92,6 +92,11 @@ public class Matrix4d implements jvictor.math.matrix.interfaces.Matrix4d<Matrix4
     }
 
     @Override
+    public Matrix4d mul(double d) {
+        return null;
+    }
+
+    @Override
     public Matrix4d mul(Matrix4d m) {
         return null;
     }

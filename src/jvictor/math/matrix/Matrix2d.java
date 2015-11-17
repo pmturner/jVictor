@@ -12,25 +12,29 @@ public class Matrix2d implements Matrixd<Matrix2d, Vector2d> {
 
     public Matrix2d() {
         this(1, 0,
-             0, 1);
+                0, 1);
     }
 
     public Matrix2d(Matrix2d src) {
         this(src.m00, src.m01,
-             src.m10, src.m11);
+                src.m10, src.m11);
     }
 
     public Matrix2d(double m00, double m01,
                     double m10, double m11) {
 
-        this.m00 = m00; this.m01 = m01;
-        this.m10 = m10; this.m11 = m11;
+        this.m00 = m00;
+        this.m01 = m01;
+        this.m10 = m10;
+        this.m11 = m11;
     }
 
     @Override
     public Matrix2d add(Matrix2d m) {
-        m00 += m.m00; m01 += m.m01;
-        m10 += m.m10; m11 += m.m11;
+        m00 += m.m00;
+        m01 += m.m01;
+        m10 += m.m10;
+        m11 += m.m11;
         return this;
     }
 
@@ -74,6 +78,16 @@ public class Matrix2d implements Matrixd<Matrix2d, Vector2d> {
     }
 
     @Override
+    public Matrix2d mul(double d) {
+        m00 *= d;
+        m01 *= d;
+        m10 *= d;
+        m11 *= d;
+
+        return this;
+    }
+
+    @Override
     public Matrix2d mul(Matrix2d m2) {
         Matrix2d m1 = new Matrix2d(this);
 
@@ -92,8 +106,10 @@ public class Matrix2d implements Matrixd<Matrix2d, Vector2d> {
 
     @Override
     public Matrix2d negate() {
-        m00 = -m00; m01 = -m01;
-        m10 = -m10; m11 = -m11;
+        m00 = -m00;
+        m01 = -m01;
+        m10 = -m10;
+        m11 = -m11;
         return this;
     }
 
@@ -104,22 +120,28 @@ public class Matrix2d implements Matrixd<Matrix2d, Vector2d> {
 
     @Override
     public Matrix2d setIdentity() {
-        m00 = 1; m01 = 0;
-        m10 = 0; m11 = 1;
+        m00 = 1;
+        m01 = 0;
+        m10 = 0;
+        m11 = 1;
         return this;
     }
 
     @Override
     public Matrix2d setZero() {
-        m00 = 0; m01 = 0;
-        m10 = 0; m11 = 0;
+        m00 = 0;
+        m01 = 0;
+        m10 = 0;
+        m11 = 0;
         return this;
     }
 
     @Override
     public Matrix2d sub(Matrix2d m) {
-        m00 -= m.m00; m01 -= m.m01;
-        m10 -= m.m10; m11 -= m.m11;
+        m00 -= m.m00;
+        m01 -= m.m01;
+        m10 -= m.m10;
+        m11 -= m.m11;
         return this;
     }
 

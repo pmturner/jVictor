@@ -92,6 +92,11 @@ public class Matrix4f implements jvictor.math.matrix.interfaces.Matrix4f<Matrix4
     }
 
     @Override
+    public Matrix4f mul(float f) {
+        return null;
+    }
+
+    @Override
     public Matrix4f mul(Matrix4f m) {
         return null;
     }
