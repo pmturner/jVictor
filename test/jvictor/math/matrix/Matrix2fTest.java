@@ -44,8 +44,10 @@ public class Matrix2fTest {
     @Test
     public void testDeterminant() throws Exception {
         m1 = new Matrix2f();
-        m1.m00 = 1; m1.m01 = 2;
-        m1.m10 = 3; m1.m11 = 4;
+        m1.m00 = 1;
+        m1.m01 = 2;
+        m1.m10 = 3;
+        m1.m11 = 4;
 
         float targetDet = (1 * 4) - (3 * 2);
         float det = m1.determinant();
@@ -56,8 +58,10 @@ public class Matrix2fTest {
     @Test
     public void testInvert() throws Exception {
         m1 = new Matrix2f();
-        m1.m00 = 1; m1.m01 = 2;
-        m1.m10 = 3; m1.m11 = 4;
+        m1.m00 = 1;
+        m1.m01 = 2;
+        m1.m10 = 3;
+        m1.m11 = 4;
 
         m2 = new Matrix2f(m1);
         m2.invert();
@@ -67,8 +71,10 @@ public class Matrix2fTest {
         assertTrue(m2.equals(new Matrix2f().setIdentity()));
 
         m1 = new Matrix2f();
-        m1.m00 = -1; m1.m01 = 2;
-        m1.m10 = -3; m1.m11 = 4;
+        m1.m00 = -1;
+        m1.m01 = 2;
+        m1.m10 = -3;
+        m1.m11 = 4;
 
         m2 = new Matrix2f(m1);
         m2.invert();
@@ -82,8 +88,10 @@ public class Matrix2fTest {
     public void testInvertCopy() throws Exception {
         Matrix2f m1Copy;
         m1 = new Matrix2f();
-        m1.m00 = 1; m1.m01 = 2;
-        m1.m10 = 3; m1.m11 = 4;
+        m1.m00 = 1;
+        m1.m01 = 2;
+        m1.m10 = 3;
+        m1.m11 = 4;
         m1Copy = new Matrix2f(m1);
 
         m2 = m1.invertCopy();
@@ -94,8 +102,10 @@ public class Matrix2fTest {
         assertTrue(m1.equals(m1Copy));
 
         m1 = new Matrix2f();
-        m1.m00 = -1; m1.m01 = 2;
-        m1.m10 = -3; m1.m11 = 4;
+        m1.m00 = -1;
+        m1.m01 = 2;
+        m1.m10 = -3;
+        m1.m11 = 4;
         m1Copy = new Matrix2f(m1);
 
         m2 = m1.invertCopy();
@@ -115,6 +125,16 @@ public class Matrix2fTest {
     }
 
     @Test
+    public void testMulF() throws Exception {
+        m1 = new Matrix2f();
+
+        m1.mul(5);
+        m2 = new Matrix2f(5, 0, 0, 5);
+
+        assertTrue(m1.equals(m2));
+    }
+
+    @Test
     public void testMulMatrices() throws Exception {
         /**
          * See "testMul".
@@ -124,8 +144,10 @@ public class Matrix2fTest {
     @Test
     public void testNegate() throws Exception {
         m1 = new Matrix2f();
-        m1.m00 = 1; m1.m01 = 2;
-        m1.m10 = 3; m1.m11 = 4;
+        m1.m00 = 1;
+        m1.m01 = 2;
+        m1.m10 = 3;
+        m1.m11 = 4;
 
         m2 = m1.negate();
 
@@ -137,14 +159,16 @@ public class Matrix2fTest {
     @Test
     public void testNegateCopy() throws Exception {
         m1 = new Matrix2f();
-        m1.m00 = 1; m1.m01 = 2;
-        m1.m10 = 3; m1.m11 = 4;
+        m1.m00 = 1;
+        m1.m01 = 2;
+        m1.m10 = 3;
+        m1.m11 = 4;
 
         m2 = m1.negateCopy();
 
         assertFalse(m2.equals(m1));
-        assertTrue(m1.m00 ==  1 && m1.m01 ==  2);
-        assertTrue(m1.m10 ==  3 && m1.m11 ==  4);
+        assertTrue(m1.m00 == 1 && m1.m01 == 2);
+        assertTrue(m1.m10 == 3 && m1.m11 == 4);
         assertTrue(m2.m00 == -1 && m2.m01 == -2);
         assertTrue(m2.m10 == -3 && m2.m11 == -4);
     }
