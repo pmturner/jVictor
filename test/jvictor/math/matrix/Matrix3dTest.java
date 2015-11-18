@@ -295,7 +295,8 @@ public class Matrix3dTest extends MatrixdTest {
         assertTrue(result.equals(vCopy)); // because m1 was the identity this time
         assertTrue(v.equals(result));
 
-        m1 = new Matrix3d(2, 0, 0,
+        m1 = new Matrix3d(
+                2, 0, 0,
                 0, 1, 0,
                 0, 0, 3);
         v = new Vector3d(1, 2, 3);
@@ -323,7 +324,8 @@ public class Matrix3dTest extends MatrixdTest {
         assertTrue(result.equals(vCopy)); // because m1 was the identity this time
         assertTrue(v.equals(result));
 
-        m1 = new Matrix3d(2, 0, 0,
+        m1 = new Matrix3d(
+                2, 0, 0,
                 0, 1, 0,
                 0, 0, 3);
         v = new Vector3d(1, 2, 3);
@@ -338,10 +340,12 @@ public class Matrix3dTest extends MatrixdTest {
 
     @Test
     public void testTranspose() throws Exception {
-        m1 = new Matrix3d(1, 2, 3,
+        m1 = new Matrix3d(
+                1, 2, 3,
                 4, 5, 6,
                 7, 8, 9);
-        m2 = new Matrix3d(1, 4, 7,
+        m2 = new Matrix3d(
+                1, 4, 7,
                 2, 5, 8,
                 3, 6, 9);
 
@@ -353,10 +357,12 @@ public class Matrix3dTest extends MatrixdTest {
 
     @Test
     public void testTransposeCopy() throws Exception {
-        m1 = new Matrix3d(1, 2, 3,
+        m1 = new Matrix3d(
+                1, 2, 3,
                 4, 5, 6,
                 7, 8, 9);
-        m2 = new Matrix3d(1, 4, 7,
+        m2 = new Matrix3d(
+                1, 4, 7,
                 2, 5, 8,
                 3, 6, 9);
         Matrix3d m1Copy = new Matrix3d(m1);
