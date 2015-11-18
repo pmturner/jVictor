@@ -49,7 +49,7 @@ public class Matrix3dTest extends MatrixdTest {
     @Test
     public void testDeterminant() throws Exception {
         m1 = new Matrix3d();
-        m1.m00 = 1;
+        m1.m00 = 2;
         m1.m01 = 2;
         m1.m02 = 3;
         m1.m10 = 4;
@@ -59,8 +59,8 @@ public class Matrix3dTest extends MatrixdTest {
         m1.m21 = 8;
         m1.m22 = 9;
 
-        double targetDet = ((1 * 5 * 9) + (2 * 6 * 7) + (3 * 4 * 8)) -
-                ((7 * 5 * 3) + (8 * 6 * 1) + (9 * 4 * 2));
+        double targetDet = ((2 * 5 * 9) + (2 * 6 * 7) + (3 * 4 * 8)) -
+                ((7 * 5 * 3) + (8 * 6 * 2) + (9 * 4 * 2));
         double det = m1.determinant();
 
         assertTrue(det == targetDet);
@@ -143,6 +143,20 @@ public class Matrix3dTest extends MatrixdTest {
          * Tests for mul() and mulMatrices() are omitted here because there are no straightforward ways to test
          * multiplication by itself.
          */
+    }
+
+    @Test
+    public void testMulD() throws Exception {
+        m1 = new Matrix3d();
+
+        m2 = new Matrix3d(
+                2, 0, 0,
+                0, 2, 0,
+                0, 0, 2);
+
+        m1.mul(2);
+
+        assertTrue(m1.equals(m2));
     }
 
     @Test
